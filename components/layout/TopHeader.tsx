@@ -19,7 +19,7 @@ type Props = {
 
 const TopHeader = ({ setOpenMenu }: Props) => {
   return (
-    <div className="mx-auto max-w-[90rem] px-4 sm:px-6">
+    <div className="mx-auto w-full px-4 sm:px-6">
       <div className="flex items-center justify-between py-3 md:justify-between md:space-x-10">
         <div className="flex space-x-10">
           <a href="#">

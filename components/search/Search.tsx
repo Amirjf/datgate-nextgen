@@ -3,14 +3,14 @@ import React from 'react';
 
 const Search = () => {
   return (
-    <div className="lg:flex text-white hidden justify-start items-center w-1/2">
+    <div className="lg:flex text-white hidden justify-start items-center w-full">
       <div className="relative flex items-center w-full">
         <span className="absolute pl-2">
           <IconSearch size={25} color="#fff" />
         </span>
         <input
           placeholder='Search " Mercedes-Benz CLA "'
-          className="bg-transparent w-full pl-10 py-1 outline-none focus:border-primary transition-all border-2 border-gray-700 rounded-full"
+          className="bg-transparent w-full pl-10 py-2 outline-none focus:border-primary transition-all border-2 border-gray-700 rounded-full"
         />
       </div>
     </div>

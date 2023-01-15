@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
-import useScrollGoingUp from 'hooks/useScrollGoingUp';
 import clsx from 'clsx';
 import useScrollPosition from 'hooks/useScrollPosition';
 import MobileMenu from 'components/mobile-menu/MobileMenu';
@@ -10,84 +9,79 @@ import Search from 'components/search/Search';
 import Nav from 'components/nav/Nav';
 import TopHeader from './TopHeader';
 import { IconMenu2 } from '@tabler/icons';
+import Favorites from 'components/favorites/Favorites';
+
+const layoutAnimation = {
+  layout: { duration: 0.3, ease: 'linear' },
+};
+
 const Header = () => {
-  const goingUp = useScrollGoingUp();
-  const scrollPostion = useScrollPosition(200);
+  const scrollPostion = useScrollPosition(75);
 
   const [openMenu, setOpenMenu] = useState(false);
 
-  const isShowingHeader = () => {
-    if (!scrollPostion && goingUp) {
-      return true;
-    }
-
-    if (scrollPostion) {
-      return true;
-    }
-
-    return false;
-  };
-
   return (
-    <AnimatePresence initial={false}>
-      {isShowingHeader() && (
-        <Popover
-          initial={{ y: '-100%' }}
-          animate={{ y: 0 }}
-          exit={{ y: '-100%' }}
-          transition={{ duration: 0.2 }}
-          as={motion.header}
-          className={clsx('fixed w-full', !scrollPostion && 'bg-black')}
+    <Popover as={'header'} className={clsx('w-full bg-black')}>
+      <TopHeader setOpenMenu={setOpenMenu} />
+      <AnimatePresence>
+        <motion.div
+          layout
+          transition={layoutAnimation}
+          className={clsx(
+            'mx-auto w-full bg-black px-4 sm:px-6',
+            !scrollPostion && 'fixed top-0 w-full'
+          )}
         >
-          <AnimatePresence initial={false}>
-            {scrollPostion && (
+          <motion.div
+            layout
+            transition={layoutAnimation}
+            className="flex items-center justify-between py-3 md:justify-start md:space-x-10"
+          >
+            {!scrollPostion && (
               <motion.div
-                initial={{ y: '-100%' }}
-                animate={{ y: 0 }}
-                exit={{ y: '-100%' }}
-                transition={{ duration: 0.2 }}
+                initial={{ y: '-100%', opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: '-100%', opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="flex justify-start gap-3"
               >
-                <TopHeader setOpenMenu={setOpenMenu} />
+                <a href="#">
+                  <span className="sr-only">LOGO</span>
+                  <Image
+                    width={100}
+                    height={100}
+                    className="h-8 w-auto sm:h-10"
+                    src="/logo.png"
+                    alt=""
+                  />
+                </a>
+                <div className="-my-2 -mr-2 lg:hidden">
+                  <Popover.Button
+                    onClick={() => setOpenMenu(true)}
+                    className="inline-flex items-center justify-center p-2 text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+                  >
+                    <span className="sr-only">Open menu</span>
+                    <IconMenu2 className="h-8 w-8" aria-hidden="true" />
+                  </Popover.Button>
+                </div>
               </motion.div>
             )}
-          </AnimatePresence>
-          <div className="mx-auto max-w-[90rem] px-4 sm:px-6">
-            <div className="flex items-center justify-between py-3 md:justify-start md:space-x-10">
-              {!scrollPostion && (
-                <div className="flex justify-between gap-3 w-full lg:w-0 lg:flex-1">
-                  <a href="#">
-                    <span className="sr-only">LOGOdasda</span>
-                    <Image
-                      width={100}
-                      height={100}
-                      className="h-8 w-auto sm:h-10"
-                      src="/logo.png"
-                      alt=""
-                    />
-                  </a>
-                  <div className="-my-2 -mr-2 lg:hidden">
-                    <Popover.Button
-                      onClick={() => setOpenMenu(true)}
-                      className="inline-flex items-center justify-center p-2 text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
-                    >
-                      <span className="sr-only">Open menu</span>
-                      <IconMenu2 className="h-8 w-8" aria-hidden="true" />
-                    </Popover.Button>
-                  </div>
-                </div>
-              )}
 
-              <Nav />
-              <div className="hidden items-center justify-end lg:flex lg:flex-1">
-                <Search />
-              </div>
-            </div>
-          </div>
+            <Nav />
 
-          <MobileMenu setIsMenuOpen={setOpenMenu} openMenu={openMenu} />
-        </Popover>
-      )}
-    </AnimatePresence>
+            <motion.div
+              layout
+              className="hidden items-center justify-end lg:flex lg:flex-1"
+            >
+              <Search />
+              <Favorites />
+            </motion.div>
+          </motion.div>
+        </motion.div>
+      </AnimatePresence>
+
+      <MobileMenu setIsMenuOpen={setOpenMenu} openMenu={openMenu} />
+    </Popover>
   );
 };
 
