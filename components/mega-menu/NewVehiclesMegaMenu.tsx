@@ -53,7 +53,7 @@ const NewVehiclesMegaMenu = () => {
                 'group inline-flex items-center text-white outline-none font-bold transition-colors hover:text-primary'
               )}
             >
-              New
+              NEW
               <IconChevronDown
                 className={clsx(
                   open ? 'text-blue-500' : 'text-white',

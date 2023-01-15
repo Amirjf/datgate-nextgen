@@ -4,10 +4,9 @@ import React from 'react';
 
 const Nav = () => {
   return (
-    <Popover.Group as="nav" className="hidden space-x-10 md:flex">
+    <Popover.Group as="nav" className="hidden space-x-10 lg:flex">
       <NewVehiclesMegaMenu />
       <NewVehiclesMegaMenu />
-
       <a
         href="#"
         className="text-white font-bold transition-colors hover:text-primary"
