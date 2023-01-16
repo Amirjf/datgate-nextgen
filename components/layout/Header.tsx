@@ -50,8 +50,8 @@ const Header = () => {
                   <Image
                     width={100}
                     height={100}
-                    className="h-8 w-auto sm:h-10"
-                    src="/logo.png"
+                    className="h-10 w-auto sm:h-14"
+                    src="https://mbseattle.datgate.com/content/uploads/2023/01/mb-seatlle-logo.jpg"
                     alt=""
                   />
                 </a>

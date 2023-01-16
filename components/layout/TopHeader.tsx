@@ -26,12 +26,12 @@ const TopHeader = ({ setOpenMenu }: Props) => {
             <Image
               width={100}
               height={100}
-              className="h-8 w-auto sm:h-10"
-              src="/logo.png"
+              className="h-8 w-auto sm:h-12"
+              src="https://mbseattle.datgate.com/content/uploads/2023/01/mb-seatlle-logo.jpg"
               alt=""
             />
           </a>
-          {/* <div className="hidden lg:flex space-x-5">
+          <div className="hidden lg:flex space-x-5">
             <a href="#">
               <Image
                 width={100}
@@ -50,7 +50,7 @@ const TopHeader = ({ setOpenMenu }: Props) => {
                 alt=""
               />
             </a>
-          </div> */}
+          </div>
         </div>
         <div className="-my-2 -mr-2 lg:hidden">
           <Popover.Button

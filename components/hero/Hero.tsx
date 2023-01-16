@@ -11,9 +11,11 @@ const Hero = () => {
           height={1080}
           alt="Hero"
           src="/bg.png"
-          // sizes="(max-width: 768px) 30vw,
-          //     (max-width: 1200px) 50vw,
-          //     53vw"
+          loading="eager"
+          priority
+          sizes="(max-width: 768px) 30vw,
+              (max-width: 1200px) 50vw,
+              53vw"
         />
       </div>
     </div>
