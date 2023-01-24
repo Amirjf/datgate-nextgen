@@ -19,18 +19,9 @@ type Props = {
 
 const TopHeader = ({ setOpenMenu }: Props) => {
   return (
-    <div className="mx-auto w-full px-4 sm:px-6">
+    <div className="mx-auto w-full bg-black px-4 sm:px-6 hidden lg:block">
       <div className="flex items-center justify-between py-3 md:justify-between md:space-x-10">
-        <div className="flex space-x-10">
-          <a href="#">
-            <Image
-              width={100}
-              height={100}
-              className="h-8 w-auto sm:h-12"
-              src="https://mbseattle.datgate.com/content/uploads/2023/01/mb-seatlle-logo.jpg"
-              alt=""
-            />
-          </a>
+        <div className="flex items-center space-x-10">
           <div className="hidden lg:flex space-x-5">
             <a href="#">
               <Image

@@ -1,43 +1,10 @@
 import { Popover, Transition } from '@headlessui/react';
 import { IconChevronDown, IconMenu2 } from '@tabler/icons';
 import clsx from 'clsx';
+import NewVehiclesContent from 'components/new-vehicles-mega-menu/NewVehiclesMegaMenu';
 import React, { Fragment, useState } from 'react';
 
 const NewVehiclesMegaMenu = () => {
-  const solutions = [
-    {
-      name: 'Analytics',
-      description:
-        'Get a better understanding of where your traffic is coming from.',
-      href: '#',
-      icon: IconMenu2,
-    },
-    {
-      name: 'Engagement',
-      description: 'Speak directly to your customers in a more meaningful way.',
-      href: '#',
-      icon: IconMenu2,
-    },
-    {
-      name: 'Security',
-      description: "Your customers' data will be safe and secure.",
-      href: '#',
-      icon: IconMenu2,
-    },
-    {
-      name: 'Integrations',
-      description: "Connect with third-party tools that you're already using.",
-      href: '#',
-      icon: IconMenu2,
-    },
-    {
-      name: 'Automations',
-      description:
-        'Build strategic funnels that will drive your customers to convert',
-      href: '#',
-      icon: IconMenu2,
-    },
-  ];
   const callsToAction = [
     { name: 'Watch Demo', href: '#', icon: 'PlayIcon' },
     { name: 'Contact Sales', href: '#', icon: 'PhoneIcon' },
@@ -49,7 +16,9 @@ const NewVehiclesMegaMenu = () => {
           <>
             <Popover.Button
               className={clsx(
-                open ? 'text-primary' : 'text-white',
+                open
+                  ? 'text-primary border-b-2 border-b-primary'
+                  : 'text-white border-b-2 border-b-transparent',
                 'group inline-flex items-center text-white outline-none font-bold transition-colors hover:text-primary'
               )}
             >
@@ -74,28 +43,10 @@ const NewVehiclesMegaMenu = () => {
             >
               <Popover.Panel className="fixed z-10 mt-3 left-0 w-full px-2 sm:px-0 lg:ml-0">
                 <div className="overflow-hidden shadow-lg ring-1 ring-black ring-opacity-5">
-                  <div className="relative grid sm:grid-cols-2 lg:grid-cols-3 gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
-                    {solutions.map((item) => (
-                      <a
-                        key={item.name}
-                        href={item.href}
-                        className="-m-3 flex items-start rounded-lg p-3 hover:bg-gray-50"
-                      >
-                        <item.icon
-                          className="h-6 w-6 flex-shrink-0 text-indigo-600"
-                          aria-hidden="true"
-                        />
-                        <div className="ml-4">
-                          <p className="text-base font-medium text-gray-900">
-                            {item.name}
-                          </p>
-                          <p className="mt-1 text-sm text-gray-500">
-                            {item.description}
-                          </p>
-                        </div>
-                      </a>
-                    ))}
+                  <div className="bg-white">
+                    <NewVehiclesContent />
                   </div>
+
                   <div className="space-y-6 bg-gray-50 px-5 py-5 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8">
                     {callsToAction.map((item) => (
                       <div key={item.name} className="flow-root">
