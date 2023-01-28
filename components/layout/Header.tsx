@@ -4,16 +4,13 @@ import clsx from 'clsx';
 import useScrollPosition from 'hooks/useScrollPosition';
 import MobileMenu from 'components/mobile-menu/MobileMenu';
 import { Popover } from '@headlessui/react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import Search from 'components/search/Search';
 import Nav from 'components/nav/Nav';
 import TopHeader from './TopHeader';
 import { IconMenu2 } from '@tabler/icons';
 import Favorites from 'components/favorites/Favorites';
 
-const layoutAnimation = {
-  layout: { duration: 0.3, ease: 'linear' },
-};
 
 const Header = () => {
   const scrollPostion = useScrollPosition(75);

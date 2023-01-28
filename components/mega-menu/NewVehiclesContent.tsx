@@ -1,11 +1,6 @@
+import NewVehiclesContent from 'components/new-vehicles-mega-menu/NewVehiclesMegaMenu';
 import React from 'react';
-
-import { lazy } from 'react';
-
-const MegaMenu = lazy(() => import('./MegaMenu'));
-const NewVehiclesContent = lazy(
-  () => import('components/new-vehicles-mega-menu/NewVehiclesMegaMenu')
-);
+import MegaMenu from './MegaMenu';
 
 const NewVehiclesMegaMenu = () => {
   const callsToAction = [
