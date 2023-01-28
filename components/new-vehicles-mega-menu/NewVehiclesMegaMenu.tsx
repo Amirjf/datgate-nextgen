@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { IconCar } from '@tabler/icons';
 import { Tab } from '@headlessui/react';
 import clsx from 'clsx';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 const NewVehiclesContent = () => {
   let [categories] = useState({
@@ -102,6 +102,20 @@ const NewVehiclesContent = () => {
           'https://www.mbseattle.com/content/plugins/dealer-tower/assets/menu-icons/GLE-Coupe.png',
         count: 23,
       },
+      {
+        id: 16,
+        title: 'GLC',
+        image:
+          'https://www.mbseattle.com/content/plugins/dealer-tower/assets/menu-icons/GLC.png',
+        count: 13,
+      },
+      {
+        id: 17,
+        title: 'CLS',
+        image:
+          'https://www.mbseattle.com/content/plugins/dealer-tower/assets/menu-icons/CLS.png',
+        count: 4,
+      },
     ],
     'Convertibles & Roadsters': [
       {
@@ -128,52 +142,77 @@ const NewVehiclesContent = () => {
           {Object.keys(categories).map((category) => (
             <Tab
               key={category}
-              className={({ selected }) =>
-                clsx(
-                  'w-full py-2.5 text-md font-semibold mb-0 outline-none text-gray-400 transition-all',
-                  selected
-                    ? 'bg-white text-black border-b-2 border-b-black'
-                    : 'hover:bg-white/[0.12] border-b-2 border-b-gray-200 hover:text-black'
-                )
-              }
+              className="w-full py-2.5 relative text-md font-semibold mb-0 outline-none text-gray-400 hover:bg-white/[0.12] border-b-4 border-b-gray-200 hover:text-black"
             >
-              <span className="flex justify-center gap-2">
-                <IconCar />
-                {category}
-              </span>
+              {({ selected }) => (
+                <>
+                  <span
+                    className={clsx(
+                      'flex justify-center transition-colors gap-2',
+                      selected && 'text-black'
+                    )}
+                  >
+                    <IconCar />
+                    {category}
+                    {selected ? (
+                      <motion.div
+                        className="absolute bg-black bottom-[-3px] left-0 right-0 h-[3px]"
+                        layoutId="underline"
+                      />
+                    ) : null}
+                  </span>
+                </>
+              )}
             </Tab>
           ))}
         </Tab.List>
-        <Tab.Panels className="mt-2">
+        <Tab.Panels as={motion.div} layout className="mt-2">
           {Object.values(categories).map((posts, idx) => (
-            <Tab.Panel key={idx} className={'rounded-xl bg-white p-3'}>
-              <motion.ul className="flex flex-wrap justify-around mx-auto w-5/6">
-                {posts.map((post) => (
-                  <li
-                    key={post.id}
-                    className="relative rounded-full h-64 p-3 transition-all flex flex-col items-center space-y-4 hover:bg-gray-100 w-64"
-                  >
-                    <span className="absolute flex-col flex justify-center leading-10 items-center top-3">
-                      <span className="bg-gradient-to-t flex justify-center flex-col items-center  text-[3rem] font-extrabold to-[#1D2939] from-[#ffffff45] opacity-60 text-transparent bg-clip-text">
-                        {post.count}
-                      </span>
-                      <span className="text-gray-400">IN STOCK</span>
-                    </span>
-                    <a
-                      href="#"
-                      className="flex pt-10 flex-col justify-start items-center"
+            <Tab.Panel
+              as={motion.div}
+              key={idx}
+              layout
+              className={'rounded-xl bg-white p-3'}
+            >
+              <AnimatePresence>
+                <motion.ul
+                  layout
+                  className="flex flex-wrap justify-around mx-auto w-5/6"
+                >
+                  {posts.map((post, i) => (
+                    <motion.li
+                      key={post.id}
+                      initial={{ y: 10, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      exit={{ y: -10, opacity: 0 }}
+                      transition={{
+                        delay: i * 0.1,
+                        duration: 0.4,
+                      }}
+                      className="relative rounded-full h-64 p-3 flex flex-col items-center transition-colors duration-500 space-y-4 hover:bg-gray-100 w-64"
                     >
-                      <Image
-                        src={post.image}
-                        width={500}
-                        height={100}
-                        alt={post.title}
-                      />
-                      <h3 className="text-sm font-medium">{post.title}</h3>
-                    </a>
-                  </li>
-                ))}
-              </motion.ul>
+                      <span className="absolute flex-col flex justify-center leading-10 items-center top-3">
+                        <span className="bg-gradient-to-t flex justify-center flex-col items-center text-[3rem] font-extrabold to-[#1D2939] from-[#ffffff45] opacity-60 text-transparent bg-clip-text">
+                          {post.count}
+                        </span>
+                        <span className="text-gray-400">IN STOCK</span>
+                      </span>
+                      <a
+                        href="#"
+                        className="flex pt-10 flex-col justify-start items-center"
+                      >
+                        <Image
+                          src={post.image}
+                          width={500}
+                          height={100}
+                          alt={post.title}
+                        />
+                        <h3 className="text-sm font-medium">{post.title}</h3>
+                      </a>
+                    </motion.li>
+                  ))}
+                </motion.ul>
+              </AnimatePresence>
             </Tab.Panel>
           ))}
         </Tab.Panels>

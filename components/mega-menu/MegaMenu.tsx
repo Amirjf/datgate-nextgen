@@ -40,23 +40,18 @@ const MegaMenu = ({ children, name, links }: Props) => {
             leaveFrom="opacity-100 translate-y-0"
             leaveTo="opacity-0 translate-y-1"
           >
-            <Popover.Panel className="fixed z-10 mt-4 left-0 w-full px-2 sm:px-0 lg:ml-0">
+            <Popover.Panel className="fixed z-10 mt-4 left-0 w-full px-2 shadow-xl sm:px-0 lg:ml-0">
               <div className="overflow-hidden shadow-lg ring-1 ring-black ring-opacity-5">
                 <div className="bg-white">{children}</div>
                 {links && (
-                  <div className="space-y-6 bg-gray-50 px-5 py-5 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8">
+                  <div className="space-y-6 bg-black px-5 py-5 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8">
                     {links.map((item) => (
                       <div key={item.name} className="flow-root">
                         <a
                           href={item.href}
-                          className="-m-3 flex items-center rounded-md p-3 text-base font-medium text-gray-900 hover:bg-gray-100"
+                          className="-m-3 flex transition-all items-center text-white rounded-md p-3 text-base font-medium hover:bg-gray-900"
                         >
-                          <item.icon
-                            //@ts-ignore
-                            className="h-6 w-6 flex-shrink-0 text-gray-400"
-                            aria-hidden="true"
-                          />
-                          <span className="ml-3">{item.name}</span>
+                          {item.name}
                         </a>
                       </div>
                     ))}
