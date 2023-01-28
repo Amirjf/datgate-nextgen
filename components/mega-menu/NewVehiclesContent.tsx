@@ -1,9 +1,11 @@
-import { Popover, Transition } from '@headlessui/react';
-import { motion } from 'framer-motion';
-import clsx from 'clsx';
-import NewVehiclesContent from 'components/new-vehicles-mega-menu/NewVehiclesMegaMenu';
 import React from 'react';
-import MegaMenu from './MegaMenu';
+
+import { lazy } from 'react';
+
+const MegaMenu = lazy(() => import('./MegaMenu'));
+const NewVehiclesContent = lazy(
+  () => import('components/new-vehicles-mega-menu/NewVehiclesMegaMenu')
+);
 
 const NewVehiclesMegaMenu = () => {
   const callsToAction = [
