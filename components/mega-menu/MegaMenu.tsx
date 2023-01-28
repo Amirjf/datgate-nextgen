@@ -43,7 +43,6 @@ const MegaMenu = ({ children, name, links }: Props) => {
             <Popover.Panel className="fixed z-10 mt-4 left-0 w-full px-2 sm:px-0 lg:ml-0">
               <div className="overflow-hidden shadow-lg ring-1 ring-black ring-opacity-5">
                 <div className="bg-white">{children}</div>
-
                 {links && (
                   <div className="space-y-6 bg-gray-50 px-5 py-5 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8">
                     {links.map((item) => (

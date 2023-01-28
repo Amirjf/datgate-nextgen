@@ -1,89 +1,122 @@
 import React, { useState } from 'react';
-import { IconChevronDown, IconMenu2 } from '@tabler/icons';
+import { IconCar } from '@tabler/icons';
 import { Tab } from '@headlessui/react';
 import clsx from 'clsx';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
-
 const NewVehiclesContent = () => {
   let [categories] = useState({
     SUV: [
       {
         id: 1,
-        title: 'Does drinking coffee make you smarter?',
-        date: '5h ago',
-        commentCount: 5,
-        shareCount: 2,
+        title: 'GLA',
+        image:
+          'https://www.mbseattle.com/content/plugins/dealer-tower/assets/menu-icons/GLA.png',
+        count: 5,
       },
       {
         id: 2,
-        title: "So you've bought coffee... now what?",
-        date: '2h ago',
-        commentCount: 3,
-        shareCount: 2,
+        title: 'EQB',
+        image:
+          'https://www.mbseattle.com/content/plugins/dealer-tower/assets/menu-icons/EQB.png',
+        count: 3,
+      },
+      {
+        id: 3,
+        title: 'GLS',
+        image:
+          'https://www.mbseattle.com/content/plugins/dealer-tower/assets/menu-icons/GLS.png',
+        count: 13,
+      },
+      {
+        id: 4,
+        title: 'G-Class',
+        image:
+          'https://www.mbseattle.com/content/plugins/dealer-tower/assets/menu-icons/G-Class.png',
+        count: 15,
+      },
+      {
+        id: 5,
+        title: 'EQS',
+        image:
+          'https://www.mbseattle.com/content/plugins/dealer-tower/assets/menu-icons/EQS.png',
+        count: 15,
       },
     ],
     'Sedans & Wagons': [
       {
-        id: 1,
-        title: 'Is tech making coffee better or worse?',
-        date: 'Jan 7',
-        commentCount: 29,
-        shareCount: 16,
+        id: 6,
+        title: 'C-Class',
+        image:
+          'https://www.mbseattle.com/content/plugins/dealer-tower/assets/menu-icons/C-Class.png',
+        count: 5,
       },
       {
-        id: 2,
-        title: 'The most innovative things happening in coffee',
-        date: 'Mar 19',
-        commentCount: 24,
-        shareCount: 12,
+        id: 7,
+        title: 'CLS',
+        image:
+          'https://www.mbseattle.com/content/plugins/dealer-tower/assets/menu-icons/CLS.png',
+        count: 10,
+      },
+      {
+        id: 8,
+        title: 'GLS',
+        image:
+          'https://www.mbseattle.com/content/plugins/dealer-tower/assets/menu-icons/GLS.png',
+        count: 13,
+      },
+      {
+        id: 9,
+        title: 'EQE',
+        image:
+          'https://www.mbseattle.com/content/plugins/dealer-tower/assets/menu-icons/EQE.png',
+        count: 15,
+      },
+      {
+        id: 10,
+        title: 'S-Class',
+        image:
+          'https://www.mbseattle.com/content/plugins/dealer-tower/assets/menu-icons/S-Class.png',
+        count: 25,
       },
     ],
     Coupes: [
       {
-        id: 1,
-        title: 'Ask Me Anything: 10 answers to your questions about coffee',
-        date: '2d ago',
-        commentCount: 9,
-        shareCount: 5,
+        id: 11,
+        title: 'E-Class',
+        image:
+          'https://www.mbseattle.com/content/plugins/dealer-tower/assets/menu-icons/E-Class.png',
+        count: 5,
       },
       {
-        id: 2,
-        title: "The worst advice we've ever heard about coffee",
-        date: '4d ago',
-        commentCount: 1,
-        shareCount: 2,
+        id: 12,
+        title: 'AMG-GT',
+        image:
+          'https://www.mbseattle.com/content/plugins/dealer-tower/assets/menu-icons/AMG-GT.png',
+        count: 10,
+      },
+      {
+        id: 13,
+        title: 'GLE',
+        image:
+          'https://www.mbseattle.com/content/plugins/dealer-tower/assets/menu-icons/GLE-Coupe.png',
+        count: 23,
       },
     ],
     'Convertibles & Roadsters': [
       {
-        id: 1,
-        title: 'Ask Me Anything: 10 answers to your questions about coffee',
-        date: '2d ago',
-        commentCount: 9,
-        shareCount: 5,
+        id: 14,
+        title: 'E-Class',
+        image:
+          'https://www.mbseattle.com/content/plugins/dealer-tower/assets/menu-icons/E-Class.png',
+        count: 5,
       },
       {
-        id: 2,
-        title: "The worst advice we've ever heard about coffee",
-        date: '4d ago',
-        commentCount: 1,
-        shareCount: 2,
-      },
-    ],
-    Electric: [
-      {
-        id: 1,
-        title: 'Ask Me Anything: 10 answers to your questions about coffee',
-        date: '2d ago',
-        commentCount: 9,
-        shareCount: 5,
-      },
-      {
-        id: 2,
-        title: "The worst advice we've ever heard about coffee",
-        date: '4d ago',
-        commentCount: 1,
-        shareCount: 2,
+        id: 15,
+        title: 'C-Class',
+        image:
+          'https://www.mbseattle.com/content/plugins/dealer-tower/assets/menu-icons/C-Class.png',
+        count: 5,
       },
     ],
   });
@@ -105,12 +138,7 @@ const NewVehiclesContent = () => {
               }
             >
               <span className="flex justify-center gap-2">
-                <Image
-                  alt="body-icon"
-                  src="/svg/bodystyles/body.svg"
-                  width={20}
-                  height={20}
-                />
+                <IconCar />
                 {category}
               </span>
             </Tab>
@@ -118,38 +146,34 @@ const NewVehiclesContent = () => {
         </Tab.List>
         <Tab.Panels className="mt-2">
           {Object.values(categories).map((posts, idx) => (
-            <Tab.Panel
-              key={idx}
-              className={clsx('rounded-xl bg-white p-3', '')}
-            >
-              <ul>
+            <Tab.Panel key={idx} className={'rounded-xl bg-white p-3'}>
+              <motion.ul className="flex flex-wrap justify-around mx-auto w-5/6">
                 {posts.map((post) => (
                   <li
                     key={post.id}
-                    className="relative rounded-md p-3 hover:bg-gray-100"
+                    className="relative rounded-full h-64 p-3 transition-all flex flex-col items-center space-y-4 hover:bg-gray-100 w-64"
                   >
-                    <h3 className="text-sm font-medium leading-5">
-                      {post.title}
-                    </h3>
-
-                    <ul className="mt-1 flex space-x-1 text-xs font-normal leading-4 text-gray-500">
-                      <li>{post.date}</li>
-                      <li>&middot;</li>
-                      <li>{post.commentCount} comments</li>
-                      <li>&middot;</li>
-                      <li>{post.shareCount} shares</li>
-                    </ul>
-
+                    <span className="absolute flex-col flex justify-center leading-10 items-center top-3">
+                      <span className="bg-gradient-to-t flex justify-center flex-col items-center  text-[3rem] font-extrabold to-[#1D2939] from-[#ffffff45] opacity-60 text-transparent bg-clip-text">
+                        {post.count}
+                      </span>
+                      <span className="text-gray-400">IN STOCK</span>
+                    </span>
                     <a
                       href="#"
-                      className={clsx(
-                        'absolute inset-0 rounded-md',
-                        'ring-blue-400 focus:z-10 focus:outline-none focus:ring-2'
-                      )}
-                    />
+                      className="flex pt-10 flex-col justify-start items-center"
+                    >
+                      <Image
+                        src={post.image}
+                        width={500}
+                        height={100}
+                        alt={post.title}
+                      />
+                      <h3 className="text-sm font-medium">{post.title}</h3>
+                    </a>
                   </li>
                 ))}
-              </ul>
+              </motion.ul>
             </Tab.Panel>
           ))}
         </Tab.Panels>
