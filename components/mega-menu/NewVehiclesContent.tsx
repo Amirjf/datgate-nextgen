@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 
 import { lazy } from 'react';
 
@@ -17,9 +17,11 @@ const NewVehiclesMegaMenu = () => {
   ];
   return (
     <>
-      <MegaMenu name="New" links={callsToAction}>
-        <NewVehiclesContent />
-      </MegaMenu>
+      <Suspense fallback={<>Loading ...</>}>
+        <MegaMenu name="New" links={callsToAction}>
+          <NewVehiclesContent />
+        </MegaMenu>
+      </Suspense>
     </>
   );
 };

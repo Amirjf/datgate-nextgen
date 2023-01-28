@@ -1,6 +1,5 @@
 import { Popover } from '@headlessui/react';
 import NewVehiclesMegaMenu from 'components/mega-menu/NewVehiclesContent';
-import { motion } from 'framer-motion';
 import React from 'react';
 
 const Nav = () => {
