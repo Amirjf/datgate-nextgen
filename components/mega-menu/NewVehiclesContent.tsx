@@ -1,11 +1,6 @@
-import React, { Suspense } from 'react';
-
-import { lazy } from 'react';
-
-const MegaMenu = lazy(() => import('./MegaMenu'));
-const NewVehiclesContent = lazy(
-  () => import('components/new-vehicles-mega-menu/NewVehiclesMegaMenu')
-);
+import NewVehiclesContent from 'components/new-vehicles-mega-menu/NewVehiclesMegaMenu';
+import React from 'react';
+import MegaMenu from './MegaMenu';
 
 const NewVehiclesMegaMenu = () => {
   const callsToAction = [
@@ -17,11 +12,9 @@ const NewVehiclesMegaMenu = () => {
   ];
   return (
     <>
-      <Suspense fallback={<>Loading ...</>}>
-        <MegaMenu name="New" links={callsToAction}>
-          <NewVehiclesContent />
-        </MegaMenu>
-      </Suspense>
+      <MegaMenu name="New" links={callsToAction}>
+        <NewVehiclesContent />
+      </MegaMenu>
     </>
   );
 };
