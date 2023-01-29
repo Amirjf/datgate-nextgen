@@ -51,7 +51,10 @@ const PreOwnedContent = () => {
           <h3 className="font-semibold border-b w-1/2">Features</h3>
           <ul className="py-4">
             {FEATURES_LINKS.map((link) => (
-              <li className="pb-2 text-gray-500 hover:text-primary text-sm">
+              <li
+                key={link.name}
+                className="pb-2 text-gray-500 hover:text-primary text-sm"
+              >
                 <a href={link.href}>{link.name}</a>
               </li>
             ))}
