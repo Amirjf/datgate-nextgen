@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 
 import dynamic from 'next/dynamic';
 
@@ -22,11 +22,9 @@ const NewVehiclesMegaMenu = () => {
   ];
   return (
     <>
-      <Suspense fallback={<></>}>
-        <DynamicMegaMenu name="New" links={callsToAction}>
-          <MegaMenuContent />
-        </DynamicMegaMenu>
-      </Suspense>
+      <DynamicMegaMenu name="New" links={callsToAction}>
+        <MegaMenuContent />
+      </DynamicMegaMenu>
     </>
   );
 };
