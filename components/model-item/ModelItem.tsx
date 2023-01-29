@@ -10,7 +10,7 @@ type Props = {
 
 const ModelItem = ({ title, image, count }: Props) => {
   return (
-    <div className="relative rounded-full h-48 w-48 md:h-52 md:w-52 p-3 flex flex-col items-center transition-all duration-500 space-y-4 bg-size-200 bg-gradient-to-t to-[#e5e5e582] from-[#d2030300] bg-pos-0 hover:bg-pos-100">
+    <div className="relative hover:-translate-y-1 rounded-full h-48 w-48 md:h-52 md:w-52 p-3 flex flex-col items-center transition-all duration-500 space-y-4 bg-size-100 bg-gradient-to-t to-[#e5e5e582] from-[#d2030300] bg-pos-100">
       <span className="absolute flex-col flex justify-center leading-10 items-center top-3">
         <span className="bg-gradient-to-t to-primary from-[#ffffff45] opacity-70 flex justify-center flex-col items-center text-[3rem] font-extrabold text-transparent bg-clip-text">
           {count}
