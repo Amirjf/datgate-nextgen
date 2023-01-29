@@ -6,7 +6,7 @@ const ModelSection = () => {
   return (
     <section
       className="my-10 p-4 h-96 bg-no-repeat bg-cover"
-      style={{ backgroundImage: 'url("/bg-2222.png")' }}
+      style={{ backgroundImage: 'url("/bg-model.webp")' }}
     >
       <div className="relative">
         <div className="absolute top-36 lg:top-10">
