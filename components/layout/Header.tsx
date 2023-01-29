@@ -12,18 +12,18 @@ import { IconMenu2 } from '@tabler/icons';
 import Favorites from 'components/favorites/Favorites';
 
 const Header = () => {
-  const scrollPostion = useScrollPosition(25);
+  const scrollPostion = useScrollPosition(74);
 
   const [openMenu, setOpenMenu] = useState(false);
 
   return (
-    <Popover as={'header'} className="w-full bg-black">
+    <Popover as={'header'} className="w-full bg-black z-50 relative">
       <TopHeader setOpenMenu={setOpenMenu} />
       <AnimatePresence>
         <div
           className={clsx(
             'mx-auto w-full bg-black px-4 sm:px-6',
-            !scrollPostion && 'fixed top-0 w-full'
+            !scrollPostion && 'fixed top-0'
           )}
         >
           <div className="flex items-center justify-between py-3 md:justify-start md:space-x-10">

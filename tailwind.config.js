@@ -14,6 +14,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ['var(--font-inter)', ...fontFamily.sans],
+        serif: ['var(--font-mb)', ...fontFamily.serif],
       },
       backgroundSize: {
         'size-200': '200% 200%',
