@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import { Hero, Layout } from '@/components/ui';
 import Head from 'next/head';
+import ModelItem from 'components/model-item/ModelItem';
 
 const Home: NextPage = () => {
   return (
@@ -15,7 +16,7 @@ const Home: NextPage = () => {
           />
         </Head>
         <Hero />
-        <div className="h-[4040px]"></div>
+        <div className="h-[4040px]">sadasdsa</div>
       </>
     </Layout>
   );

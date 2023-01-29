@@ -44,7 +44,7 @@ const MegaMenu = ({ children, name, links }: Props) => {
               <div className="overflow-hidden shadow-lg ring-1 ring-black ring-opacity-5">
                 <div className="bg-white">{children}</div>
                 {links && (
-                  <div className="space-y-6 bg-black px-5 py-5 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8">
+                  <div className="space-y-6 bg-black px-4 py-5 sm:flex sm:space-y-0 sm:space-x-10 sm:px-4">
                     {links.map((item) => (
                       <div key={item.name} className="flow-root">
                         <a

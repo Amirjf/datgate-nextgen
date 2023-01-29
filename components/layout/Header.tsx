@@ -11,14 +11,13 @@ import TopHeader from './TopHeader';
 import { IconMenu2 } from '@tabler/icons';
 import Favorites from 'components/favorites/Favorites';
 
-
 const Header = () => {
-  const scrollPostion = useScrollPosition(75);
+  const scrollPostion = useScrollPosition(25);
 
   const [openMenu, setOpenMenu] = useState(false);
 
   return (
-    <Popover as={'header'} className={clsx('w-full bg-black')}>
+    <Popover as={'header'} className="w-full bg-black">
       <TopHeader setOpenMenu={setOpenMenu} />
       <AnimatePresence>
         <div

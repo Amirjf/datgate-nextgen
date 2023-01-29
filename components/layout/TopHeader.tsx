@@ -1,15 +1,12 @@
 import { Popover } from '@headlessui/react';
 import {
   IconClock,
-  IconCloudDataConnection,
-  IconCurrentLocation,
   IconLocation,
-  IconLocationOff,
+
   IconMenu2,
   IconPhone,
 } from '@tabler/icons';
 import ContactInfo from 'components/contact-info/ContactInfo';
-import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 import React from 'react';
 
@@ -57,7 +54,7 @@ const TopHeader = ({ setOpenMenu }: Props) => {
           <ContactInfo Icon={IconClock} text={'Today: 9:00am - 8:00pm'} />
 
           <ContactInfo
-            Icon={IconLocationOff}
+            Icon={IconLocation}
             text={'25035 SW Parkway Ave, Wilsonville,OR'}
           />
         </div>
