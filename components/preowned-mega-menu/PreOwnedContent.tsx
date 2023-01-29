@@ -65,7 +65,7 @@ const PreOwnedContent = () => {
             <div className="bg-gray-50 rounded-md w-[80%] p-2 overflow-x-auto overflow-hidden">
               <ul className="flex gap-10 uppercase">
                 {BODY_STYLES.map((item) => (
-                  <li>
+                  <li key={item.title}>
                     <ModelItem
                       image={item.image}
                       count={item.count}
