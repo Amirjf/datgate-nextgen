@@ -1,4 +1,5 @@
 import { Popover, Transition } from '@headlessui/react';
+import { IconChevronDown, IconChevronRight } from '@tabler/icons';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
 import React, { Fragment } from 'react';
@@ -21,6 +22,7 @@ const MegaMenu = ({ children, name, links }: Props) => {
             )}
           >
             {name}
+            <IconChevronDown size={20} />
           </Popover.Button>
           {open && (
             <motion.span
@@ -44,13 +46,14 @@ const MegaMenu = ({ children, name, links }: Props) => {
               <div className="overflow-hidden shadow-lg ring-1 ring-black ring-opacity-5">
                 <div className="bg-white">{children}</div>
                 {links && (
-                  <div className="space-y-6 bg-black px-4 py-5 sm:flex sm:space-y-0 sm:space-x-10 sm:px-4">
+                  <div className="bg-primary px-4 sm:flex sm:space-y-0 sm:space-x-5 sm:px-4">
                     {links.map((item) => (
-                      <div key={item.name} className="flow-root">
-                        <a
-                          href={item.href}
-                          className="-m-3 flex transition-all items-center text-white rounded-md p-3 text-base font-medium hover:bg-gray-900"
-                        >
+                      <div
+                        key={item.name}
+                        className="flex items-center text-white p-3 transition-all hover:bg-gray-900 font-medium"
+                      >
+                        <IconChevronRight size={20} />
+                        <a href={item.href} className="rounded-md text-base">
                           {item.name}
                         </a>
                       </div>
