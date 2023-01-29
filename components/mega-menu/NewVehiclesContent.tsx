@@ -1,6 +1,16 @@
-import NewVehiclesContent from 'components/new-vehicles-mega-menu/NewVehiclesMegaMenu';
-import React from 'react';
-import MegaMenu from './MegaMenu';
+import React, { Suspense } from 'react';
+
+import dynamic from 'next/dynamic';
+
+const DynamicMegaMenu = dynamic(() => import('./MegaMenu'), {
+  ssr: false,
+});
+const MegaMenuContent = dynamic(
+  () => import('components/new-vehicles-mega-menu/NewVehiclesMegaMenu'),
+  {
+    ssr: false,
+  }
+);
 
 const NewVehiclesMegaMenu = () => {
   const callsToAction = [
@@ -12,9 +22,11 @@ const NewVehiclesMegaMenu = () => {
   ];
   return (
     <>
-      <MegaMenu name="New" links={callsToAction}>
-        <NewVehiclesContent />
-      </MegaMenu>
+      <Suspense fallback={<></>}>
+        <DynamicMegaMenu name="New" links={callsToAction}>
+          <MegaMenuContent />
+        </DynamicMegaMenu>
+      </Suspense>
     </>
   );
 };

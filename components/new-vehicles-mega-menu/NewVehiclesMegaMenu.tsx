@@ -15,6 +15,20 @@ const NewVehiclesContent = () => {
         count: 5,
       },
       {
+        id: 121,
+        title: 'GLB',
+        image:
+          'https://www.mbseattle.com/content/plugins/dealer-tower/assets/menu-icons/GLB.png',
+        count: 6,
+      },
+      {
+        id: 1211,
+        title: 'GLE',
+        image:
+          'https://www.mbseattle.com/content/plugins/dealer-tower/assets/menu-icons/GLE.png',
+        count: 36,
+      },
+      {
         id: 2,
         title: 'EQB',
         image:
@@ -189,13 +203,15 @@ const NewVehiclesContent = () => {
                         delay: i * 0.1,
                         duration: 0.4,
                       }}
-                      className="relative rounded-full h-64 p-3 flex flex-col items-center transition-colors duration-500 space-y-4 hover:bg-gray-100 w-64"
+                      className="relative rounded-full h-48 w-48 md:h-56 md:w-56 p-3 flex flex-col items-center transition-colors duration-500 space-y-4 hover:bg-gray-100"
                     >
                       <span className="absolute flex-col flex justify-center leading-10 items-center top-3">
-                        <span className="bg-gradient-to-t flex justify-center flex-col items-center text-[3rem] font-extrabold to-[#1D2939] from-[#ffffff45] opacity-60 text-transparent bg-clip-text">
+                        <span className="bg-gradient-to-t flex justify-center flex-col items-center text-[3rem] font-extrabold to-primary from-[#ffffff45] opacity-60 text-transparent bg-clip-text">
                           {post.count}
                         </span>
-                        <span className="text-gray-400">IN STOCK</span>
+                        <span className="text-gray-400 opacity-50">
+                          IN STOCK
+                        </span>
                       </span>
                       <a
                         href="#"
@@ -203,8 +219,8 @@ const NewVehiclesContent = () => {
                       >
                         <Image
                           src={post.image}
-                          width={500}
-                          height={100}
+                          width={200}
+                          height={80}
                           alt={post.title}
                         />
                         <h3 className="text-sm font-medium">{post.title}</h3>
