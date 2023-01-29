@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
+import { Button } from '@/components/ui';
 const Hero = () => {
   return (
     <div className="">
@@ -22,15 +23,9 @@ const Hero = () => {
             Welcome to Mercedes-Benz of Seattle
           </h1>
           <div className="hidden md:flex gap-x-4 justify-center pt-10">
-            <button className="bg-[#ffffff3f] py-3 md:px-6 rounded-sm hover:bg-white hover:text-black transition-colors duration-300">
-              New Vehicles
-            </button>
-            <button className="bg-[#ffffff3f] py-3 md:px-6 rounded-sm hover:bg-white hover:text-black transition-colors duration-300">
-              Pre-Owned Vehicles
-            </button>
-            <button className="bg-[#ffffff3f] py-3 md:px-6 rounded-sm hover:bg-white hover:text-black transition-colors duration-300">
-              Current Incentives
-            </button>
+            <Button>New Vehicles</Button>
+            <Button>Pre-Owned Vehicles</Button>
+            <Button>Current Incentives</Button>
           </div>
         </div>
       </div>
