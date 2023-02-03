@@ -1,15 +1,11 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
 import clsx from 'clsx';
-import useScrollPosition from 'hooks/useScrollPosition';
-import MobileMenu from 'components/mobile-menu/MobileMenu';
 import { Popover } from '@headlessui/react';
 import { AnimatePresence } from 'framer-motion';
-import Search from 'components/search/Search';
-import Nav from 'components/nav/Nav';
-import TopHeader from './TopHeader';
 import { IconMenu2 } from '@tabler/icons';
-import Favorites from 'components/favorites/Favorites';
+import { Favorites, TopHeader, Nav, Search, MobileMenu } from '@/components/ui';
+import { useScrollPosition } from '@/hooks';
 
 const Header = () => {
   const scrollPostion = useScrollPosition(74);
@@ -64,4 +60,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export { Header };

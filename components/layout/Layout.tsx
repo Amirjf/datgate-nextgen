@@ -1,4 +1,4 @@
-import Header from './Header';
+import { Header } from '@/components/ui';
 type Props = {
   children: JSX.Element;
 };

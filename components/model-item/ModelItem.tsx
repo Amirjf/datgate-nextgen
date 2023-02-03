@@ -1,5 +1,4 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { FC } from 'react';
 import Image from 'next/image';
 
 type Props = {
@@ -8,7 +7,7 @@ type Props = {
   image: string;
 };
 
-const ModelItem = ({ title, image, count }: Props) => {
+export const ModelItem: FC<Props> = ({ title, image, count }) => {
   return (
     <div className="relative hover:-translate-y-1 rounded-full h-48 w-48 md:h-52 md:w-52 p-3 flex flex-col items-center transition-all duration-500 space-y-4 bg-size-100 bg-gradient-to-t to-[#e5e5e582] from-[#d2030300] bg-pos-100">
       <span className="absolute flex-col flex justify-center leading-10 items-center top-3">
@@ -24,5 +23,3 @@ const ModelItem = ({ title, image, count }: Props) => {
     </div>
   );
 };
-
-export default ModelItem;

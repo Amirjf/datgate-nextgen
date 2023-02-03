@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { IconCar } from '@tabler/icons';
 import { Tab } from '@headlessui/react';
 import clsx from 'clsx';
 import { AnimatePresence, motion } from 'framer-motion';
+import { ModelItem } from '@/components/ui';
 
-import ModelItem from 'components/model-item/ModelItem';
 const NewVehiclesContent = () => {
   let [categories] = useState({
     SUV: [
@@ -167,7 +166,6 @@ const NewVehiclesContent = () => {
                       selected && 'text-black'
                     )}
                   >
-                    <IconCar />
                     {category}
                     {selected ? (
                       <motion.div

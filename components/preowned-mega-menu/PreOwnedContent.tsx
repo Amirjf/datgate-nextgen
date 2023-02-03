@@ -1,4 +1,4 @@
-import ModelItem from 'components/model-item/ModelItem';
+import { ModelItem } from '@/components/ui';
 import React from 'react';
 
 const FEATURES_LINKS = [

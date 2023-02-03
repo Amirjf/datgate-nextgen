@@ -5,7 +5,7 @@ const Search = () => {
   return (
     <div className="lg:flex text-white hidden justify-start items-center w-full">
       <div className="relative flex items-center w-full">
-        <span className="absolute pl-2">
+        <span className="absolute pl-3">
           <IconSearch size={25} color="#fff" />
         </span>
         <input
@@ -17,4 +17,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+export {Search};

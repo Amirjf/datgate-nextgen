@@ -57,4 +57,4 @@ const TopHeader = ({ setOpenMenu }: Props) => {
   );
 };
 
-export default TopHeader;
+export { TopHeader };
