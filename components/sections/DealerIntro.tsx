@@ -1,11 +1,11 @@
-import { IconCalendar } from '@tabler/icons';
+import { IconCalendar, IconPlayerPlay } from '@tabler/icons';
 import React from 'react';
-
+import { Container } from '@/components/ui';
 const DealerIntro = () => {
   return (
-    <section className="max-w-[110rem] my-20 md:mx-auto">
-      <div className="grid grid-cols-1 lg:grid-cols-2 h-[100rem] lg:h-[85vh]">
-        <div className="flex flex-col pl-4 justify-end mb-10 lg:justify-center">
+    <Container>
+      <div className="grid grid-cols-1 lg:grid-cols-2 lg:h-[85vh]">
+        <div className="flex flex-col pl-4 justify-end mb-10 mt-36 lg:justify-center">
           <h3 className="text-5xl font-bold font-serif">
             Make This Year Electric
           </h3>
@@ -24,7 +24,7 @@ const DealerIntro = () => {
             <button>Discouver Mercedes-Benz</button>
           </div>
         </div>
-        <div className='relative bg-[url("https://www.mbusa.com/content/dam/mb-nafta/us/homepage-redesign/2023_Jan_Homepage_Hero_XL.jpg")] bg-fixed bg-center h-full'>
+        <div className='relative bg-[url("https://www.mbusa.com/content/dam/mb-nafta/us/homepage-redesign/2023_Jan_Homepage_Hero_XL.jpg")] bg-fixed bg-center h-[40rem] lg:h-full'>
           <button className="text-center bg-white font-semibold py-8 px-14 hover:bg-black hover:text-white transition-colors">
             View Inventory
           </button>
@@ -37,9 +37,14 @@ const DealerIntro = () => {
               Book Test Drive
             </button>
           </div>
+          <div className="absolute top-1/2 -left-8">
+            <button className="bg-black w-16 h-16 text-center flex items-center justify-center rounded-full text-white shadow-lg shadow-gray-700">
+              <IconPlayerPlay />
+            </button>
+          </div>
         </div>
       </div>
-    </section>
+    </Container>
   );
 };
 

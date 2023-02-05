@@ -1,5 +1,7 @@
 export * from './button';
 export * from './hero';
+export * from './container';
+
 export * from './layout';
 export * from './backdrop';
 export * from './sections';
