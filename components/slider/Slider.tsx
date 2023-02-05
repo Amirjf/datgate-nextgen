@@ -30,8 +30,10 @@ export const Slider = ({
     <>
       <div className="relative">
         <div ref={sliderRef} className="keen-slider">
-          {arraySlides?.map((slide) => (
-            <div className="keen-slider__slide">{slide}</div>
+          {arraySlides?.map((slide, index) => (
+            <div key={index} className="keen-slider__slide">
+              {slide}
+            </div>
           ))}
         </div>
         {loaded && instanceRef.current && (

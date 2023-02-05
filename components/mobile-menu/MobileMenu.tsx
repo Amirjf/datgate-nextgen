@@ -1,5 +1,6 @@
 import { Popover, Transition } from '@headlessui/react';
 import { IconMenu2, IconX } from '@tabler/icons';
+import Image from 'next/image';
 import React, { Fragment } from 'react';
 
 const solutions = [
@@ -86,7 +87,9 @@ const MobileMenu = ({ setIsMenuOpen }: any) => {
           <div className="px-5 pt-5 pb-6">
             <div className="flex items-center justify-between">
               <div>
-                <img
+                <Image
+                  width={140}
+                  height={50}
                   className="h-8 w-auto"
                   src="/logo.png"
                   alt="Your Company"
