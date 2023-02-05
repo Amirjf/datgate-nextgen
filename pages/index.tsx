@@ -5,6 +5,8 @@ import {
   AboutDealer,
   Layout,
   ModelSection,
+  ReviewsCarousel,
+  ReviewsSection,
 } from '@/components/ui';
 import Head from 'next/head';
 
@@ -25,6 +27,7 @@ const Home: NextPage = () => {
         <ModelSection />
         <DealerIntro />
         <AboutDealer />
+        <ReviewsSection />
         <div className="h-[2110px]"></div>
       </>
     </Layout>

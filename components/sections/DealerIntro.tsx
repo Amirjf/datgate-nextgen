@@ -3,7 +3,7 @@ import React from 'react';
 import { Container } from '@/components/ui';
 const DealerIntro = () => {
   return (
-    <Container>
+    <Container className="my-20 mt-28">
       <div className="grid grid-cols-1 lg:grid-cols-2 lg:h-[85vh]">
         <div className="flex flex-col pl-4 justify-end mb-10 mt-36 lg:justify-center">
           <h3 className="text-5xl font-bold font-serif">

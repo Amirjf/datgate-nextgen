@@ -1,7 +1,7 @@
 export * from './button';
 export * from './hero';
 export * from './container';
-
+export * from './reviews-carousel';
 export * from './layout';
 export * from './backdrop';
 export * from './sections';
