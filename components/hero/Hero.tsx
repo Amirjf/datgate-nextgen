@@ -3,14 +3,14 @@ import React from 'react';
 import { Button } from '@/components/ui';
 const Hero = () => {
   return (
-    <div className="">
-      <div className="relative">
+    <div className="relative w-full h-dynamic min-h-[650px] max-h-[650px] md:min-h-max md:max-h-max h-screen">
+      <div className="absolute inset-0">
         <Image
-          className="w-full animate-wiggle"
-          width={1920}
+          className="w-full h-full object-cover absolute top-0"
+          width={2000}
           height={1080}
           alt="Hero"
-          src="/bg.png"
+          src="/bg2.png"
           loading="eager"
           priority
           sizes="(max-width: 768px) 20vw,
@@ -18,7 +18,7 @@ const Hero = () => {
               53vw"
         />
 
-        <div className="absolute w-full text-white top-[10%] left-0 text-center right-0 m-x-auto">
+        <div className="absolute w-full text-white top-[15%] left-0 text-center right-0 m-x-auto">
           <h1 className="text-lg sm:text-3xl md:text-5xl font-serif">
             Welcome to Mercedes-Benz of Seattle
           </h1>

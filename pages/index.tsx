@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import { Hero, Layout, ModelSection } from '@/components/ui';
+import { DealerIntro, Hero, Layout, ModelSection } from '@/components/ui';
 import Head from 'next/head';
 
 const Home: NextPage = () => {
@@ -17,6 +17,7 @@ const Home: NextPage = () => {
         <Hero />
 
         <ModelSection />
+        <DealerIntro />
         <div className="h-[2110px]"></div>
       </>
     </Layout>

@@ -5,7 +5,7 @@ import { Button } from '@/components/ui';
 const ModelSection = () => {
   return (
     <section
-      className="my-10 p-4 h-96 bg-no-repeat bg-cover"
+      className="my-20 p-4 h-96 bg-no-repeat bg-cover"
       style={{ backgroundImage: 'url("/bg-model.webp")' }}
     >
       <div className="relative">

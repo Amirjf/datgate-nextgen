@@ -13,13 +13,13 @@ const Header = () => {
   const [openMenu, setOpenMenu] = useState(false);
 
   return (
-    <Popover as={'header'} className="w-full bg-black z-50 relative">
-      <TopHeader setOpenMenu={setOpenMenu} />
+    <Popover as={'header'} className="w-full z-50 relative">
+      {/* <TopHeader setOpenMenu={setOpenMenu} /> */}
       <AnimatePresence>
         <div
           className={clsx(
-            'mx-auto w-full bg-black px-4 sm:px-6',
-            !scrollPostion && 'fixed top-0'
+            'mx-auto w-full px-4 sm:px-6 fixed top-0',
+            !scrollPostion ? 'bg-black' : 'bg-transparent'
           )}
         >
           <div className="flex items-center justify-between py-3 md:justify-start md:space-x-10">

@@ -2,7 +2,7 @@ export * from './button';
 export * from './hero';
 export * from './layout';
 export * from './backdrop';
-export * from './model-section';
+export * from './sections';
 export * from './drawer';
 export * from './model-item';
 export * from './mega-menu';
