@@ -1,6 +1,9 @@
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import { Inter, Noto_Serif } from '@next/font/google';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useState } from 'react';
+
 const inter = Inter({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700', '800'],
@@ -12,10 +15,26 @@ const mb = Noto_Serif({
   variable: '--font-mb',
 });
 
-function MyApp({ Component, pageProps }: AppProps) {
+type ComponentWithPageLayout = AppProps & {
+  Component: AppProps['Component'] & {
+    PageLayout?: React.ComponentType;
+  };
+};
+
+function MyApp({ Component, pageProps }: ComponentWithPageLayout) {
+  const [queryClient] = useState(() => new QueryClient());
+
   return (
     <div className={`${inter.variable} ${mb.variable} font-sans`}>
-      <Component {...pageProps} />;
+      <QueryClientProvider client={queryClient}>
+        {Component.PageLayout ? (
+          <Component.PageLayout>
+            <Component {...pageProps} />
+          </Component.PageLayout>
+        ) : (
+          <Component {...pageProps} />
+        )}
+      </QueryClientProvider>
     </div>
   );
 }

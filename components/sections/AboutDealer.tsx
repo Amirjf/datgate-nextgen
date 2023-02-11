@@ -6,14 +6,15 @@ import { IconArrowRight } from '@tabler/icons';
 const AboutDealer = () => {
   return (
     <Container
+      fluid
       style={{
         backgroundImage:
           'linear-gradient(258.13deg, rgba(0, 0, 0, 0.81) 51.54%, rgba(0, 0, 0, 0.7857) 108.97%), url("/dealership.jpg")',
       }}
-      className="relative h-[40rem] bg-no-repeat bg-cover bg-center flex items-center justify-center text-white"
+      className="relative py-20 bg-no-repeat bg-cover bg-center flex items-center justify-center text-white"
     >
       <div className="flex flex-col lg:flex-row lg:mx-16 gap-10 items-center lg:items-start justify-center text-white">
-        <div className="w-3/4 lg:w-1/2">
+        <div className="w-11/12 lg:w-1/2">
           <Image
             className="w-full h-full object-cover"
             src="/dealership.jpg"
@@ -22,7 +23,7 @@ const AboutDealer = () => {
             alt="dealership"
           />
         </div>
-        <div className="flex flex-col items-start w-3/4 lg:w-1/2">
+        <div className="flex flex-col items-start w-11/12 pb-5 lg:w-1/2">
           <a href="/about-us" className="border-b mb-2 w-20 text-center">
             About Us
           </a>

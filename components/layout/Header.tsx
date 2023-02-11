@@ -4,27 +4,37 @@ import clsx from 'clsx';
 import { Popover } from '@headlessui/react';
 import { AnimatePresence } from 'framer-motion';
 import { IconMenu2 } from '@tabler/icons';
-import { Favorites, TopHeader, Nav, Search, MobileMenu } from '@/components/ui';
+import { Favorites, Nav, Search, MobileMenu } from '@/components/ui';
 import { useScrollPosition } from '@/hooks';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 const Header = () => {
   const scrollPostion = useScrollPosition(74);
+  const { pathname } = useRouter();
 
   const [openMenu, setOpenMenu] = useState(false);
 
   return (
-    <Popover as={'header'} className="w-full z-50 relative">
+    <Popover
+      as={'header'}
+      className={clsx(
+        'w-full z-50 relative',
+        pathname !== '/' ? 'bg-black' : ''
+      )}
+    >
       {/* <TopHeader setOpenMenu={setOpenMenu} /> */}
       <AnimatePresence>
         <div
           className={clsx(
-            'mx-auto w-full px-4 sm:px-6 fixed top-0',
-            !scrollPostion ? 'bg-black' : 'bg-transparent'
+            'mx-auto w-full px-4 sm:px-6',
+            !scrollPostion ? 'bg-black' : 'bg-transparent',
+            pathname === '/' ? 'fixed top-0' : ''
           )}
         >
           <div className="flex items-center justify-between py-3 md:justify-start md:space-x-10">
             <div className="flex justify-between w-full lg:w-auto items-center lg:justify-start gap-3">
-              <a href="#">
+              <Link href="/">
                 <span className="sr-only">LOGO</span>
                 <Image
                   width={100}
@@ -33,7 +43,7 @@ const Header = () => {
                   src="https://mbseattle.datgate.com/content/uploads/2023/01/mb-seatlle-logo.jpg"
                   alt=""
                 />
-              </a>
+              </Link>
               <div className="-my-2 -mr-2 lg:hidden">
                 <Popover.Button
                   onClick={() => setOpenMenu(true)}

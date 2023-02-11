@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 import { Button } from '@/components/ui';
+import Link from 'next/link';
 const Hero = () => {
   return (
     <div className="relative w-full h-dynamic min-h-[650px] max-h-[650px] md:min-h-max md:max-h-max h-screen">
@@ -23,7 +24,9 @@ const Hero = () => {
             Welcome to Mercedes-Benz of Seattle
           </h1>
           <div className="hidden md:flex gap-x-4 justify-center pt-10">
-            <Button>New Vehicles</Button>
+            <Link href="/inventory">
+              <Button>New Vehicles</Button>
+            </Link>
             <Button>Pre-Owned Vehicles</Button>
             <Button>Current Incentives</Button>
           </div>

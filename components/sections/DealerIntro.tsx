@@ -37,7 +37,7 @@ const DealerIntro = () => {
               Book Test Drive
             </button>
           </div>
-          <div className="absolute top-1/2 -left-8">
+          <div className="absolute top-1/2 left-1/2 lg:-left-8">
             <button className="bg-black w-16 h-16 text-center flex items-center justify-center rounded-full text-white shadow-lg shadow-gray-700">
               <IconPlayerPlay />
             </button>
