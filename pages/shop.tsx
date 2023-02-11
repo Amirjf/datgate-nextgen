@@ -20,6 +20,11 @@ const Shop = () => {
                     width={600}
                     height={300}
                     alt={car.title_short}
+                    loading="eager"
+                    priority
+                    sizes="(max-width: 768px) 20vw,
+                        (max-width: 1200px) 50vw,
+                        53vw"
                   />
                 </span>
                 <h2 className="text-lg text-gray-100 dark:text-gray-500">
@@ -34,7 +39,7 @@ const Shop = () => {
   );
 };
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchInfiniteQuery(['vehicles'], getInventory);
