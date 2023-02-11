@@ -3,7 +3,12 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['www.mbusa.com', 'mbseattle.datgate.com', 'www.mbseattle.com'],
+    domains: [
+      'www.mbusa.com',
+      'mbseattle.datgate.com',
+      'www.mbseattle.com',
+      's3.amazonaws.com',
+    ],
   },
 };
 

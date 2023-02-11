@@ -4,7 +4,7 @@ import { getInventory } from 'pages/shop';
 import { useContext } from 'react';
 
 const useInfiniteVehicles = () => {
-  const { filters }: any = useContext(InventoryContext);
+  const { filters, filterObj }: any = useContext(InventoryContext);
 
   const placeholderData: any = {
     pages: [
@@ -71,8 +71,8 @@ const useInfiniteVehicles = () => {
     fetchNextPage,
     hasNextPage,
   } = useInfiniteQuery({
-    queryKey: ['vehicles'],
-    queryFn: getInventory,
+    queryKey: ['vehicles', { ...filterObj }],
+    queryFn: () => getInventory(filterObj),
     staleTime: 10000,
     getNextPageParam: (lastPage, pages) => {
       if (pages.length === lastPage.payload.last_page) {
@@ -86,6 +86,8 @@ const useInfiniteVehicles = () => {
   });
 
   const filterItems = data?.pages[0].available_filters;
+
+  console.log(filterItems, 'filterItems');
   return {
     data,
     filterItems,

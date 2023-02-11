@@ -13,3 +13,4 @@ export * from './favorites';
 export * from './nav';
 export * from './search';
 export * from './collapse';
+export * from './checkbox';

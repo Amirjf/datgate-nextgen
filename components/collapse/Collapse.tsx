@@ -4,9 +4,11 @@ import React, { useState } from 'react';
 
 type Props = {
   children: React.ReactNode;
+  title: string;
+  count?: number | string;
 };
 
-const Collapse = ({ children }: Props) => {
+const Collapse = ({ children, title, count }: Props) => {
   const [showContent, setShowContent] = useState(false);
   return (
     <div className=" border-y ">
@@ -16,11 +18,13 @@ const Collapse = ({ children }: Props) => {
       >
         <span className="flex items-center font-medium ">
           <IconChevronDown className="pr-1" size={20} />
-          Make
+          {title}
         </span>
-        <span className="bg-black rounded-full text-sm absolute right-2 w-6 h-6 flex items-center justify-center text-white">
-          2
-        </span>
+        {count && (
+          <span className="bg-black rounded-full text-sm absolute right-2 w-6 h-6 flex items-center justify-center text-white">
+            {count}
+          </span>
+        )}
       </button>
       <AnimatePresence initial={false}>
         {showContent && (

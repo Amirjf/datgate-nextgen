@@ -28,6 +28,7 @@ function MyApp({ Component, pageProps }: ComponentWithPageLayout) {
     <div className={`${inter.variable} ${mb.variable} font-sans`}>
       <QueryClientProvider client={queryClient}>
         {Component.PageLayout ? (
+          //@ts-ignore
           <Component.PageLayout>
             <Component {...pageProps} />
           </Component.PageLayout>

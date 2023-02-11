@@ -1,28 +1,30 @@
-import {
-  dehydrate,
-  QueryClient,
-  useInfiniteQuery,
-  useQuery,
-} from '@tanstack/react-query';
+import { dehydrate, QueryClient } from '@tanstack/react-query';
 import useInfiniteVehicles from 'hooks/useInfiniteVehicles';
 import ShopLayout from 'layouts/shop';
 import React from 'react';
 import axios from 'axios';
-const shop = () => {
-  const { data, error, isFetching, isLoading, isInitialLoading } =
-    useInfiniteVehicles();
+import Image from 'next/image';
+const Shop = () => {
+  const { data } = useInfiniteVehicles();
 
-  console.log(data);
   return (
     <div>
       <div className="grid grid-cols-3 gap-4 mb-4">
         {data?.pages.map((cars: any, page: number) => {
           return cars.rows_data.map((car: any) => {
             return (
-              <div className="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
-                <p className="text-2xl text-gray-100 dark:text-gray-500">
+              <div key={car.id} className="flex flex-col">
+                <span>
+                  <Image
+                    src={car.photo || '/no-photo.jpg'}
+                    width={600}
+                    height={300}
+                    alt={car.title_short}
+                  />
+                </span>
+                <h2 className="text-lg text-gray-100 dark:text-gray-500">
                   {car.title_short}
-                </p>
+                </h2>
               </div>
             );
           });
@@ -32,7 +34,7 @@ const shop = () => {
   );
 };
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchInfiniteQuery(['vehicles'], getInventory);
@@ -43,14 +45,14 @@ export async function getServerSideProps() {
   };
 }
 
-export async function getInventory() {
+export async function getInventory(filters = {}) {
   const response = await axios.post(
     'https://slx3e4lxz2.execute-api.us-west-2.amazonaws.com/inventory/nissanofportland.com',
-    { page: 1, items_per_page: 20 }
+    { page: 1, items_per_page: 20, ...filters }
   );
   return response.data.data;
 }
 
-shop.PageLayout = ShopLayout;
+Shop.PageLayout = ShopLayout;
 
-export default shop;
+export default Shop;
