@@ -4,36 +4,48 @@ import ShopLayout from 'layouts/shop';
 import React from 'react';
 import axios from 'axios';
 import Image from 'next/image';
+import { InfiniteLoader } from '@/components/ui';
+import Link from 'next/link';
+
 const Shop = () => {
-  const { data } = useInfiniteVehicles();
+  const { data, isInitialLoading, hasNextPage } = useInfiniteVehicles();
+
+  if (isInitialLoading) {
+    return Array.from(Array(4).keys()).map((_, index) => (
+      <h2 key={index}>Loading ...</h2>
+    ));
+  }
 
   return (
     <div>
       <div className="grid grid-cols-3 gap-4 mb-4">
         {data?.pages.map((cars: any, page: number) => {
-          return cars.rows_data.map((car: any) => {
-            return (
-              <div key={car.id} className="flex flex-col">
-                <span>
-                  <Image
-                    src={car.photo || '/no-photo.jpg'}
-                    width={600}
-                    height={300}
-                    alt={car.title_short}
-                    loading="eager"
-                    priority
-                    sizes="(max-width: 768px) 20vw,
-                        (max-width: 1200px) 50vw,
-                        53vw"
-                  />
-                </span>
-                <h2 className="text-lg text-gray-100 dark:text-gray-500">
-                  {car.title_short}
-                </h2>
-              </div>
-            );
-          });
+          return cars.rows_data.map((car: any) => (
+            <div key={car.id} className="flex flex-col">
+              <Link href={`/vehicle/${car.id}`}>
+                <Image
+                  src={car.photo || '/no-photo.jpg'}
+                  width={600}
+                  height={300}
+                  alt={car.title_short}
+                  loading="eager"
+                  priority
+                  sizes="(max-width: 768px) 20vw,
+              (max-width: 1200px) 50vw,
+              53vw"
+                />
+              </Link>
+              <Link href={`/vehicle/${car.id}`} className="text-black">
+                {car.title_short}
+              </Link>
+            </div>
+          ));
         })}
+        {hasNextPage &&
+          Array.from(Array(4).keys()).map((_, index) => (
+            <div className="flex min-h-[300px] bg-gray-200" key={index}></div>
+          ))}
+        <InfiniteLoader />
       </div>
     </div>
   );
@@ -43,6 +55,7 @@ export async function getServerSideProps() {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchInfiniteQuery(['vehicles'], getInventory);
+
   return {
     props: {
       dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
