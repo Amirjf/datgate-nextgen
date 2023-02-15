@@ -1,7 +1,7 @@
 import { IconHeart } from '@tabler/icons';
-import React from 'react';
+import React, { FC } from 'react';
 
-const Favorites = () => {
+const Favorites: FC = () => {
   return (
     <div className="flex align-center pl-5 cursor-pointer">
       <IconHeart size={30} color="white" />
@@ -9,4 +9,4 @@ const Favorites = () => {
   );
 };
 
-export default Favorites;
+export { Favorites };

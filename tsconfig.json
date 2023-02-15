@@ -16,7 +16,8 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@/components/ui": ["components/index"]
+      "@/components/ui": ["components/index"],
+      "@/hooks": ["hooks/index"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

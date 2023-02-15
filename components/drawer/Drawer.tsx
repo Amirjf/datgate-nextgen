@@ -8,7 +8,7 @@ type Props = {
   setIsOpen: (isOpen: boolean) => void;
 };
 
-const Drawer = ({ children, isOpen, setIsOpen }: Props) => {
+export const Drawer = ({ children, isOpen, setIsOpen }: Props) => {
   return (
     <>
       <AnimatePresence>
@@ -39,5 +39,3 @@ const Drawer = ({ children, isOpen, setIsOpen }: Props) => {
     </>
   );
 };
-
-export default Drawer;

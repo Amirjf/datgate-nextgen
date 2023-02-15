@@ -31,4 +31,4 @@ const useScrollGoingUp = () => {
   return show;
 };
 
-export default useScrollGoingUp;
+export { useScrollGoingUp };

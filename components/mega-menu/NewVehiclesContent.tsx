@@ -1,6 +1,14 @@
-import NewVehiclesContent from 'components/new-vehicles-mega-menu/NewVehiclesMegaMenu';
 import React from 'react';
-import MegaMenu from './MegaMenu';
+import dynamic from 'next/dynamic';
+const DynamicMegaMenu = dynamic(() => import('./MegaMenu'), {
+  ssr: false,
+});
+const NewMegaMenuContent = dynamic(
+  () => import('components/new-vehicles-mega-menu/NewVehiclesMegaMenu'),
+  {
+    ssr: false,
+  }
+);
 
 const NewVehiclesMegaMenu = () => {
   const callsToAction = [
@@ -12,9 +20,9 @@ const NewVehiclesMegaMenu = () => {
   ];
   return (
     <>
-      <MegaMenu name="New" links={callsToAction}>
-        <NewVehiclesContent />
-      </MegaMenu>
+      <DynamicMegaMenu name="New" links={callsToAction}>
+        <NewMegaMenuContent />
+      </DynamicMegaMenu>
     </>
   );
 };
