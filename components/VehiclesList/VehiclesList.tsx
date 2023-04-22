@@ -25,7 +25,7 @@ export const VehiclesList = () => {
             return cars.map((car: any) => (
               <div key={car.vehicle_id} className="flex flex-col">
                 <Link href={`/vehicle/${car.id}`}>
-                  {/* <Image
+                  <Image
                     src={car.photo || '/no-photo.jpg'}
                     width={600}
                     height={300}
@@ -35,7 +35,7 @@ export const VehiclesList = () => {
                     sizes="(max-width: 768px) 20vw,
               (max-width: 1200px) 50vw,
               53vw"
-                  /> */}
+                  />
                 </Link>
                 <Link
                   href={`/vehicle/${car.vehicle_id}`}
