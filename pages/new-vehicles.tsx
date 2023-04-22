@@ -16,7 +16,7 @@ const NewVehiclesPage = () => {
   );
 };
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchInfiniteQuery(
