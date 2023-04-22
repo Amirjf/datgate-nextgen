@@ -10,7 +10,6 @@ export const fetchVehicles = async ({ page, query = {} }: any) => {
     'https://api2.dealertower.com/inventory/nissanofportland.com',
     {
       page: page + 1,
-      condition: ['new', 'used', 'certified'],
       ...query,
     }
   );

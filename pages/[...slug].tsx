@@ -50,8 +50,8 @@ export const getServerSideProps = async (context: any) => {
         'https://api2.dealertower.com/inventory/nissanofportland.com',
         {
           page: pageParam,
-          condition: ['new', 'used', 'certified'],
           url_filtering: context.resolvedUrl,
+          // condition: ['new', 'used', 'certified'],
         }
       );
       return data.data;
