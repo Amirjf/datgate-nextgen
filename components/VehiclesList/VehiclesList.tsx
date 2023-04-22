@@ -5,6 +5,7 @@ import { useIntersectionObserver } from 'hooks/useIntersectionObserver';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import { BlurImage } from '..';
 
 export const VehiclesList = () => {
   const { data, fetchNextPage, hasNextPage }: any = useVehicles();
@@ -25,7 +26,7 @@ export const VehiclesList = () => {
             return cars.map((car: any) => (
               <div key={car.vehicle_id} className="flex flex-col">
                 <Link href={`/vehicle/${car.id}`}>
-                  <Image
+                  <BlurImage
                     src={car.photo || '/no-photo.jpg'}
                     width={600}
                     height={300}
