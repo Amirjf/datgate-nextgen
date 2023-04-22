@@ -2,6 +2,7 @@ import React from 'react';
 import { Container } from '@/components/ui';
 import Image from 'next/image';
 import { IconArrowRight } from '@tabler/icons';
+import Link from 'next/link';
 
 const AboutDealer = () => {
   return (
