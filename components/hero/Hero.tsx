@@ -24,10 +24,12 @@ const Hero = () => {
             Welcome to Mercedes-Benz of Seattle
           </h1>
           <div className="hidden md:flex gap-x-4 justify-center pt-10">
-            <Link href="/inventory">
+            <Link href="/new-vehicles">
               <Button>New Vehicles</Button>
             </Link>
-            <Button>Pre-Owned Vehicles</Button>
+            <Link href="/used-vehicles">
+              <Button>Pre-Owned Vehicles</Button>
+            </Link>
             <Button>Current Incentives</Button>
           </div>
         </div>

@@ -1,15 +1,12 @@
 import { InventoryContext } from 'contexts/shop/InventoryContext';
-import { fetchVehicles, useInfiniteQueryWithInitialData } from 'pages/shop';
+import { useVehicles } from 'contexts/shop/VehiclesContext';
+
 import { useContext } from 'react';
 
 const useApplyFilter = () => {
-  const { addFilter, query, removeFilter }: any = useContext(InventoryContext);
+  const { addFilter, removeFilter }: any = useContext(InventoryContext);
 
-  const { data }: any = useInfiniteQueryWithInitialData(
-    ['vehicles', query],
-    fetchVehicles,
-    query
-  );
+  const { data }: any = useVehicles();
 
   const onFilterChange = (event: any) => {
     const { value, name, checked } = event.target;

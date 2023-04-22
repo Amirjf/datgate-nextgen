@@ -10,6 +10,8 @@ const nextConfig = {
       's3.amazonaws.com',
       'm8g3z9g9.ssl.hwcdn.net',
       'datgate-public.s3.us-west-2.amazonaws.com',
+      'vehicle-photos-published.vauto.com',
+      'imageonthefly.autodatadirect.com',
     ],
   },
 };

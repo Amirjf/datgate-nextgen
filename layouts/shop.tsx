@@ -2,13 +2,16 @@ import React, { ReactNode } from 'react';
 import { Header } from '@/components/ui';
 import { InventoryProvider } from 'contexts/shop/InventoryContext';
 import ShopSidebar from 'components/shop-sidebar/ShopSidebar';
+import { VehiclesProvider } from 'contexts/shop/VehiclesContext';
 
 const ShopLayout = ({ children }: { children: ReactNode }) => {
   return (
     <div className="relative">
       <InventoryProvider>
-        <Header />
-        {children}
+        <VehiclesProvider>
+          <Header />
+          {children}
+        </VehiclesProvider>
       </InventoryProvider>
     </div>
   );
