@@ -1,7 +1,11 @@
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import { Inter, Noto_Serif } from '@next/font/google';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import {
+  Hydrate,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query';
 import { useState } from 'react';
 
 const inter = Inter({
@@ -27,14 +31,16 @@ function MyApp({ Component, pageProps }: ComponentWithPageLayout) {
   return (
     <div className={`${inter.variable} ${mb.variable} font-sans`}>
       <QueryClientProvider client={queryClient}>
-        {Component.PageLayout ? (
-          //@ts-ignore
-          <Component.PageLayout>
+        <Hydrate state={pageProps.dehydratedState}>
+          {Component.PageLayout ? (
+            //@ts-ignore
+            <Component.PageLayout>
+              <Component {...pageProps} />
+            </Component.PageLayout>
+          ) : (
             <Component {...pageProps} />
-          </Component.PageLayout>
-        ) : (
-          <Component {...pageProps} />
-        )}
+          )}
+        </Hydrate>
       </QueryClientProvider>
     </div>
   );

@@ -1,43 +1,34 @@
-import { createContext, useState } from 'react';
+import { createContext, useCallback, useState } from 'react';
 import { useMap } from 'usehooks-ts';
+import { handleAddingFilter, handleRemovingFilter } from './utils';
 
 export const InventoryContext = createContext({});
 
 export const InventoryProvider: React.FC<any> = ({ children }: any) => {
-  const [filters, actions]: any = useMap();
+  const [query, setQuery] = useState({});
 
-  const addFilter = (filterToAdd: { key: string; value: string }) => {
-    const { key, value } = filterToAdd;
-    if (filters.has(key)) {
-      actions.set(key, [...filters.get(key), value]);
-    } else {
-      actions.set(key, [value]);
-    }
-    return filters;
+  const updateState = (updates: any) => {
+    const updatedState = { ...query, ...updates };
+    setQuery(updatedState);
   };
 
-  const removeFilter = (filterToRemove: { key: string; value: string }) => {
-    const { key, value } = filterToRemove;
-    if (filters.has(key)) {
-      const updatedValue = filters.get(key).filter((v: any) => v !== value);
-      if (updatedValue.length === 0) {
-        actions.remove(key);
-      } else {
-        actions.set(key, updatedValue);
-      }
+  const addFilter = useCallback((filterToAdd: any) => {
+    if (filterToAdd.key) {
+      setQuery((currentFilters: any) =>
+        handleAddingFilter(currentFilters, filterToAdd)
+      );
     }
-    return filters;
-  };
+  }, []);
 
-  let filterObj: any = {};
-
-  for (let [key, value] of filters) {
-    filterObj[key] = filters.get(key);
-  }
+  const removeFilter = useCallback((filterToRemove: any) => {
+    setQuery((currentFilters: any) =>
+      handleRemovingFilter(currentFilters, filterToRemove)
+    );
+  }, []);
 
   return (
     <InventoryContext.Provider
-      value={{ filters, filterObj, addFilter, removeFilter }}
+      value={{ query, updateState, addFilter, removeFilter }}
     >
       {children}
     </InventoryContext.Provider>

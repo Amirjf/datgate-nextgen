@@ -8,6 +8,8 @@ const nextConfig = {
       'mbseattle.datgate.com',
       'www.mbseattle.com',
       's3.amazonaws.com',
+      'm8g3z9g9.ssl.hwcdn.net',
+      'datgate-public.s3.us-west-2.amazonaws.com',
     ],
   },
 };

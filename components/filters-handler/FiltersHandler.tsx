@@ -1,21 +1,25 @@
-import useApplyFilter from 'hooks/useApplyFilter';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Checkbox } from '@/components/ui';
+import { useApplyFilter } from 'hooks/useApplyFilter';
+import { InventoryContext } from 'contexts/shop/InventoryContext';
 const FiltersHandler = ({ filterName, items }: any) => {
-  const { onFilterChange } = useApplyFilter(filterName);
+  const { onFilterChange, checkHandler } = useApplyFilter();
   return (
     <ul style={{ paddingBottom: 10, listStyle: 'none' }}>
       {items.map((item: any, i: number) => {
+        const value = item.value.toString();
+        const label = item.label;
         return (
           <li key={i}>
             <Checkbox
               onChange={onFilterChange}
-              name={item.label}
-              value={item.label}
-              label={item.label}
-              //   checked={checkHandler(item.label)}
-              id={item.label}
+              name={filterName}
+              value={value}
+              checked={checkHandler(filterName, value.toString())}
+              id={value}
+              label={`${label}`}
               count={item.count}
+              // disabled={shouldBeDisabled(value)}
             />
           </li>
         );
