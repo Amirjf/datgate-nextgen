@@ -24,9 +24,9 @@ const AboutDealer = () => {
           />
         </div>
         <div className="flex flex-col items-start w-11/12 pb-5 lg:w-1/2">
-          <a href="/about-us" className="border-b mb-2 w-20 text-center">
+          <Link href="/about-us" className="border-b mb-2 w-20 text-center">
             About Us
-          </a>
+          </Link>
           <h3 className="text-3xl font-extrabold pb-6">
             Mercedes-Benz of Seattle
           </h3>
