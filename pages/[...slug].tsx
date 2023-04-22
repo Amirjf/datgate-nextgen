@@ -3,34 +3,19 @@ import axios from 'axios';
 import { VehiclesList } from 'components/VehiclesList/VehiclesList';
 import ShopSidebar from 'components/shop-sidebar/ShopSidebar';
 import { InventoryContext } from 'contexts/shop/InventoryContext';
-import { useVehicles } from 'contexts/shop/VehiclesContext';
-import { useInView } from 'framer-motion';
-import { useIntersectionObserver } from 'hooks/useIntersectionObserver';
 import ShopLayout from 'layouts/shop';
 import React, { useContext } from 'react';
 
 const DynamicFilteringInventory = ({ filterData }: any) => {
-  console.log(filterData, 'filterData');
-  const { addFilter, setQuery }: any = useContext(InventoryContext);
+  const { addFilter }: any = useContext(InventoryContext);
 
   React.useEffect(() => {
     console.log('fire');
     filterData?.selected_filters.map((filter: any) => {
-      if (filter.type === 'number') {
-        setQuery((prev: any) => {
-          return { ...prev, [filter.name]: filter.value };
-        });
-        // setNumberFilters((prev: any) => ({
-        //   ...prev,
-        //   [`${filter.name}.min`]: filter.value.min,
-        //   [`${filter.name}.max`]: filter.value.max,
-        // }));
-      } else {
-        addFilter({
-          key: filter.name,
-          value: filter.value,
-        });
-      }
+      addFilter({
+        key: filter.name,
+        value: filter.value,
+      });
     });
   }, [filterData]);
 
@@ -44,7 +29,7 @@ const DynamicFilteringInventory = ({ filterData }: any) => {
 
 export const getServerSideProps = async (context: any) => {
   const queryClient = new QueryClient();
-  const res = await queryClient.prefetchInfiniteQuery(
+  await queryClient.prefetchInfiniteQuery(
     ['vehicles', {}],
     async ({ pageParam = 1 }) => {
       const { data } = await axios.post(
