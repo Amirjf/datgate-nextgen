@@ -28,7 +28,7 @@ export const InventoryProvider: React.FC<any> = ({ children }: any) => {
 
   return (
     <InventoryContext.Provider
-      value={{ query, updateState, addFilter, removeFilter }}
+      value={{ query, setQuery, updateState, addFilter, removeFilter }}
     >
       {children}
     </InventoryContext.Provider>

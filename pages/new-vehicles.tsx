@@ -2,8 +2,6 @@ import { QueryClient, dehydrate } from '@tanstack/react-query';
 import axios from 'axios';
 import { VehiclesList } from 'components/VehiclesList/VehiclesList';
 import ShopSidebar from 'components/shop-sidebar/ShopSidebar';
-import { useVehicles } from 'contexts/shop/VehiclesContext';
-import { useIntersectionObserver } from 'hooks/useIntersectionObserver';
 import ShopLayout from 'layouts/shop';
 import React from 'react';
 
