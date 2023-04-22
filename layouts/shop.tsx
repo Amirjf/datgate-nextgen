@@ -10,7 +10,7 @@ const ShopLayout = ({ children }: { children: ReactNode }) => {
       <InventoryProvider>
         <VehiclesProvider>
           <Header />
-          {children}
+          <div className="flex">{children}</div>
         </VehiclesProvider>
       </InventoryProvider>
     </div>

@@ -1,4 +1,6 @@
+import clsx from 'clsx';
 import { useVehicles } from 'contexts/shop/VehiclesContext';
+
 import { useIntersectionObserver } from 'hooks/useIntersectionObserver';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -44,14 +46,16 @@ export const VehiclesList = () => {
               </div>
             ));
           })}
-          {hasNextPage &&
-            Array.from(Array(4).keys()).map((_, index) => (
-              <div
-                key={index}
-                ref={loadMoreButtonRef}
-                className="flex min-h-[300px] bg-gray-200"
-              ></div>
-            ))}
+
+          {Array.from(Array(4).keys()).map((_, index) => (
+            <div
+              ref={loadMoreButtonRef}
+              key={index}
+              className={clsx('flex min-h-[300px] bg-gray-200', {
+                hidden: !hasNextPage,
+              })}
+            ></div>
+          ))}
         </div>
       </div>
     </>

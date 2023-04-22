@@ -3,6 +3,9 @@ import axios from 'axios';
 import { VehiclesList } from 'components/VehiclesList/VehiclesList';
 import ShopSidebar from 'components/shop-sidebar/ShopSidebar';
 import { InventoryContext } from 'contexts/shop/InventoryContext';
+import { useVehicles } from 'contexts/shop/VehiclesContext';
+import { useInView } from 'framer-motion';
+import { useIntersectionObserver } from 'hooks/useIntersectionObserver';
 import ShopLayout from 'layouts/shop';
 import React, { useContext } from 'react';
 
@@ -11,6 +14,7 @@ const DynamicFilteringInventory = ({ filterData }: any) => {
   const { addFilter, setQuery }: any = useContext(InventoryContext);
 
   React.useEffect(() => {
+    console.log('fire');
     filterData?.selected_filters.map((filter: any) => {
       if (filter.type === 'number') {
         setQuery((prev: any) => {
@@ -31,18 +35,15 @@ const DynamicFilteringInventory = ({ filterData }: any) => {
   }, [filterData]);
 
   return (
-    <div className="flex">
+    <>
       <ShopSidebar />
       <VehiclesList />
-    </div>
+    </>
   );
 };
 
 export const getServerSideProps = async (context: any) => {
   const queryClient = new QueryClient();
-
-  console.log(context.resolvedUrl, 'context');
-
   const res = await queryClient.prefetchInfiniteQuery(
     ['vehicles', {}],
     async ({ pageParam = 1 }) => {
@@ -51,7 +52,6 @@ export const getServerSideProps = async (context: any) => {
         {
           page: pageParam,
           url_filtering: context.resolvedUrl,
-          // condition: ['new', 'used', 'certified'],
         }
       );
       return data.data;
