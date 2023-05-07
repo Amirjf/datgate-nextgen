@@ -1,16 +1,38 @@
 import { QueryClient, dehydrate } from '@tanstack/react-query';
-import axios from 'axios';
 import { VehiclesList } from 'components/VehiclesList/VehiclesList';
 import ShopSidebar from 'components/shop-sidebar/ShopSidebar';
 import { InventoryContext } from 'contexts/shop/InventoryContext';
+import { useVehicles } from 'contexts/shop/VehiclesContext';
 import ShopLayout from 'layouts/shop';
+import { GetServerSideProps } from 'next';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { fetchInventory } from 'queries/fetchInventory';
 import React, { useContext } from 'react';
+export const convertArrayToObject = (array: any) => {
+  return array.reduce((acc: any, item: any) => {
+    if (!acc[item.name]) {
+      acc[item.name] = [];
+    }
 
-const DynamicFilteringInventory = ({ filterData }: any) => {
+    if (item.type === 'number') {
+      acc[item.name].push(item.value.min);
+      acc[item.name].push(item.value.max);
+    }
+
+    if (item.type === 'select') {
+      acc[item.name].push(item.value);
+    }
+
+    return acc;
+  }, {});
+};
+
+const Inventory = ({ filterData }: any) => {
+  const router = useRouter();
   const { addFilter }: any = useContext(InventoryContext);
-
+  const { data }: any = useVehicles();
   React.useEffect(() => {
-    console.log('fire');
     filterData?.selected_filters.map((filter: any) => {
       addFilter({
         key: filter.name,
@@ -19,30 +41,45 @@ const DynamicFilteringInventory = ({ filterData }: any) => {
     });
   }, [filterData]);
 
+  // const handle = () => {
+  //   console.log(router.query, 'router.query');
+  //   router.query = { make: ['Nissan', 'Ford'] };
+  // };
+
+  // const getOtherQueries = data?.selectedFilters.filter(
+  //   (filter) => filter.name !== 'condition'
+  // );
+  // const getCond = data?.selectedFilters.find(
+  //   (filter) => filter.name === 'condition'
+  // )?.value;
+
+  // console.log(
+  //   convertArrayToObject(getOtherQueries),
+  //   'convertArrayToObject(getOtherQueries)'
+  // );
+
+  // const objFilters = convertArrayToObject(getOtherQueries);
   return (
     <>
       <ShopSidebar />
+      {/* <Link
+        href={{
+          pathname: `/${getCond}-vehicles/${
+            objFilters?.make && objFilters?.make[0]
+          }/${objFilters?.model ? objFilters?.model[0] : ''}/`,
+          query: objFilters,
+        }}
+      >
+        CLICk
+      </Link> */}
       <VehiclesList />
     </>
   );
 };
 
-export const getServerSideProps = async (context: any) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const queryClient = new QueryClient();
-  await queryClient.prefetchInfiniteQuery(
-    ['vehicles', {}],
-    async ({ pageParam = 1 }) => {
-      const { data } = await axios.post(
-        'https://api2.dealertower.com/inventory/nissanofportland.com',
-        {
-          page: pageParam,
-          url_filtering: context.resolvedUrl,
-        }
-      );
-      return data.data;
-    }
-  );
-
+  await fetchInventory(queryClient, context);
   return {
     props: {
       dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
@@ -52,6 +89,6 @@ export const getServerSideProps = async (context: any) => {
   };
 };
 
-DynamicFilteringInventory.PageLayout = ShopLayout;
+Inventory.PageLayout = ShopLayout;
 
-export default DynamicFilteringInventory;
+export default Inventory;

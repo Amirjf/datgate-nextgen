@@ -2,7 +2,6 @@ import clsx from 'clsx';
 import { useVehicles } from 'contexts/shop/VehiclesContext';
 
 import { useIntersectionObserver } from 'hooks/useIntersectionObserver';
-import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { BlurImage } from '..';
@@ -25,7 +24,7 @@ export const VehiclesList = () => {
           {data?.vehicles.map((cars: any, page: number) => {
             return cars.map((car: any) => (
               <div key={car.vehicle_id} className="flex flex-col">
-                <Link href={`/vehicle/${car.id}`}>
+                <Link href={`/vehicle/${car.vehicle_id}`}>
                   <BlurImage
                     src={car.photo || '/no-photo.jpg'}
                     width={600}
@@ -33,7 +32,7 @@ export const VehiclesList = () => {
                     alt={car.title_short}
                     loading="eager"
                     priority
-                    sizes="(max-width: 768px) 20vw,
+                    sizes="(max-width: 768px) 10vw,
               (max-width: 1200px) 50vw,
               53vw"
                   />
