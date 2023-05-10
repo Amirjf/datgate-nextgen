@@ -37,7 +37,7 @@ const Header = () => {
               <Link href="/">
                 <span className="sr-only">LOGO</span>
                 <Image
-                  width={100}
+                  width={370}
                   height={100}
                   className="h-10 w-auto sm:h-14"
                   src="https://mbseattle.datgate.com/content/uploads/2023/01/mb-seatlle-logo.jpg"

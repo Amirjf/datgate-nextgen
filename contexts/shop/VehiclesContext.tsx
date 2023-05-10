@@ -51,7 +51,6 @@ export const useInfiniteQueryWithInitialData = (
 
 export const VehiclesProvider = ({ children }: any) => {
   const { query }: any = useContext(InventoryContext);
-  console.log(query, 'query');
   const data = useInfiniteQueryWithInitialData(
     ['vehicles', query],
     fetchVehicles,

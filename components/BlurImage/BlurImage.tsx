@@ -12,14 +12,13 @@ export function BlurImage(props: BlurImageProps) {
 
   return (
     <Image
-      {...props}
-      alt={props.alt}
       className={cn(
         props.className,
-        'duration-700 ease-in-out',
+        'duration-700 ease-in-out blur-xl',
         isLoading ? 'grayscale blur-xl' : 'grayscale-0 blur-0'
       )}
       onLoadingComplete={() => setLoading(false)}
+      {...props}
     />
   );
 }
