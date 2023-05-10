@@ -9,7 +9,7 @@ export const fetchInventory = async (
     ['vehicles', {}],
     async ({ pageParam = 1 }) => {
       const { data } = await axios.post(
-        'https://api2.dealertower.com/inventory/nissanofportland.com',
+        'https://api2.dealertower.com/inventory/nissan.datgate.com',
         {
           page: pageParam,
           url_filtering: context.resolvedUrl,

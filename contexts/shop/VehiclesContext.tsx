@@ -7,7 +7,7 @@ export const VehiclesContext = createContext({});
 
 export const fetchVehicles = async ({ page, query = {} }: any) => {
   const { data } = await axios.post(
-    'https://api2.dealertower.com/inventory/nissanofportland.com',
+    'https://api2.dealertower.com/inventory/nissan.datgate.com',
     {
       page: page + 1,
       ...query,
