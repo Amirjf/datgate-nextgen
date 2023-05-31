@@ -36,7 +36,7 @@ const Hero: FC<Props> = ({ heroData }) => {
           </h1>
           <div className="hidden md:flex md:flex-wrap gap-4 justify-center pt-10">
             {ctas.map((cta: any) => (
-              <Link prefetch href={cta.link}>
+              <Link key={cta.link} prefetch href={cta.link}>
                 <Button>{cta.label}</Button>
               </Link>
             ))}
