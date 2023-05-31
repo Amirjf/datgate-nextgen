@@ -12,6 +12,7 @@ const nextConfig = {
       'datgate-public.s3.us-west-2.amazonaws.com',
       'vehicle-photos-published.vauto.com',
       'imageonthefly.autodatadirect.com',
+      'nissan.datgate.com',
     ],
   },
 };

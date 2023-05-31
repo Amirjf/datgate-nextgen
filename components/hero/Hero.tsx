@@ -1,17 +1,28 @@
 import Image from 'next/image';
-import React from 'react';
-import { Button } from '@/components/ui';
+import React, { FC } from 'react';
+import { BlurImage, Button } from '@/components/ui';
 import Link from 'next/link';
-const Hero = () => {
+
+type Props = {
+  heroData: {
+    ctas: any;
+    heroType: 'video' | 'image';
+    heroVideoUrl: string;
+    heroImage: string;
+  };
+};
+
+const Hero: FC<Props> = ({ heroData }) => {
+  const { ctas, heroImage, heroType, heroVideoUrl } = heroData;
   return (
     <div className="relative w-full h-dynamic min-h-[650px] max-h-[650px] md:min-h-max md:max-h-max h-screen">
       <div className="absolute inset-0">
-        <Image
+        <BlurImage
           className="w-full h-full object-cover absolute top-0"
           width={2000}
           height={1080}
           alt="Hero"
-          src="/bg2.png"
+          src={heroImage}
           loading="eager"
           priority
           sizes="(max-width: 768px) 20vw,
@@ -23,14 +34,12 @@ const Hero = () => {
           <h1 className="text-lg sm:text-3xl md:text-5xl font-serif">
             Welcome to Mercedes-Benz of Seattle
           </h1>
-          <div className="hidden md:flex gap-x-4 justify-center pt-10">
-            <Link href="/new-vehicles">
-              <Button>New Vehicles</Button>
-            </Link>
-            <Link href="/used-vehicles">
-              <Button>Pre-Owned Vehicles</Button>
-            </Link>
-            <Button>Current Incentives</Button>
+          <div className="hidden md:flex md:flex-wrap gap-4 justify-center pt-10">
+            {ctas.map((cta: any) => (
+              <Link prefetch href={cta.link}>
+                <Button>{cta.label}</Button>
+              </Link>
+            ))}
           </div>
         </div>
       </div>

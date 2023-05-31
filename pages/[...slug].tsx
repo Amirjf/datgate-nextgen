@@ -4,7 +4,7 @@ import ShopSidebar from 'components/shop-sidebar/ShopSidebar';
 import { InventoryContext } from 'contexts/shop/InventoryContext';
 import { useVehicles } from 'contexts/shop/VehiclesContext';
 import ShopLayout from 'layouts/shop';
-import { GetServerSideProps } from 'next';
+import { GetServerSideProps, GetStaticProps } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { fetchInventory } from 'queries/fetchInventory';

@@ -7,8 +7,12 @@ import {
 } from '@/components/ui';
 import MainLayout from 'layouts/main';
 import Head from 'next/head';
+import { FC } from 'react';
 
-const Home = () => {
+type Props = { homepageData: any };
+
+const Home = ({ homepageData }: Props) => {
+  console.log(homepageData, 'homepageData');
   return (
     <>
       <Head>
@@ -19,7 +23,14 @@ const Home = () => {
           content="Mercedes-Benz of Datgate | Car Dealership Website"
         />
       </Head>
-      <Hero />
+      <Hero
+        heroData={{
+          ctas: JSON.parse(homepageData.hero_ctas),
+          heroType: homepageData.hero_type,
+          heroVideoUrl: JSON.parse(homepageData.hero_video_url),
+          heroImage: JSON.parse(homepageData.hero_image_url),
+        }}
+      />
 
       <ModelSection />
       <DealerIntro />
@@ -29,6 +40,19 @@ const Home = () => {
     </>
   );
 };
+export async function getStaticProps() {
+  const response = await fetch(
+    'https://api2.dealertower.com/dealer/nissan.datgate.com/get-information'
+  );
+  const { data } = await response.json();
+
+  return {
+    props: {
+      homepageData: data,
+    },
+    revalidate: 60, // Specifies the number of seconds before the page is re-generated
+  };
+}
 
 Home.PageLayout = MainLayout;
 

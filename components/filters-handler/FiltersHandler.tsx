@@ -4,9 +4,9 @@ import { useApplyFilter } from 'hooks/useApplyFilter';
 import { useVehicles } from 'contexts/shop/VehiclesContext';
 
 const FiltersHandler = ({ filterName, items }: any) => {
-  const { isFetching, isFetchingNextPage }: any = useVehicles();
+  const { isLoading, isFetching, isFetchingNextPage }: any = useVehicles();
   const { onFilterChange, checkHandler } = useApplyFilter();
-
+  console.log(isLoading, 'isFetching && !isFetchingNextPage');
   return (
     <ul className="relative list-none pb-3">
       {items.map((item: any, i: number) => {
@@ -27,9 +27,9 @@ const FiltersHandler = ({ filterName, items }: any) => {
           </li>
         );
       })}
-      {isFetching && !isFetchingNextPage && (
+      {isFetching && !isFetchingNextPage ? (
         <div className="absolute inset-0 opacity-70 bg-white h-full" />
-      )}
+      ) : null}
     </ul>
   );
 };

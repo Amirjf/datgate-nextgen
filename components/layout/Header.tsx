@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import clsx from 'clsx';
 import { Popover } from '@headlessui/react';
 import { AnimatePresence } from 'framer-motion';
@@ -9,7 +9,11 @@ import { useScrollPosition } from '@/hooks';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
-const Header = () => {
+type Props = {
+  bg?: string;
+};
+
+const Header: FC<Props> = ({ bg = 'backdrop-blur-md bg-gray-400/30' }) => {
   const scrollPostion = useScrollPosition(74);
   const { pathname } = useRouter();
 
@@ -27,8 +31,8 @@ const Header = () => {
       <AnimatePresence>
         <div
           className={clsx(
-            'mx-auto w-full px-4 sm:px-6',
-            !scrollPostion ? 'bg-black' : 'bg-transparent',
+            'mx-auto w-full px-4 sm:px-6 transition-colors duration-200',
+            !scrollPostion ? 'bg-black' : bg,
             pathname === '/' ? 'fixed top-0' : ''
           )}
         >
@@ -59,7 +63,7 @@ const Header = () => {
 
             <div className="hidden items-center justify-end lg:flex lg:flex-1">
               <Search />
-              <Favorites />
+              {/* <Favorites /> */}
             </div>
           </div>
         </div>

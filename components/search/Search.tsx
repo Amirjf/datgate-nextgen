@@ -10,11 +10,11 @@ const Search = () => {
         </span>
         <input
           placeholder='Search " Mercedes-Benz CLA "'
-          className="bg-transparent w-full pl-10 py-2 outline-none focus:border-primary transition-all border-2 border-gray-700 rounded-full"
+          className="bg-transparent w-full pl-10 py-2 outline-none focus:border-primary transition-all border-2 border-gray-700 rounded-full placeholder:text-white"
         />
       </div>
     </div>
   );
 };
 
-export {Search};
+export { Search };
