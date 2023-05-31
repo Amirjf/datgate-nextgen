@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { Popover } from '@headlessui/react';
 import { AnimatePresence } from 'framer-motion';
 import { IconMenu2 } from '@tabler/icons';
-import { Favorites, Nav, Search, MobileMenu } from '@/components/ui';
+import { Nav, Search, MobileMenu } from '@/components/ui';
 import { useScrollPosition } from '@/hooks';
 import { useRouter } from 'next/router';
 import Link from 'next/link';

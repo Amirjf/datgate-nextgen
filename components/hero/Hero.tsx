@@ -1,28 +1,23 @@
-import Image from 'next/image';
-import React, { FC } from 'react';
+import React from 'react';
 import { BlurImage, Button } from '@/components/ui';
 import Link from 'next/link';
+import useSite from 'contexts/site/SiteContext';
 
-type Props = {
-  heroData: {
-    ctas: any;
-    heroType: 'video' | 'image';
-    heroVideoUrl: string;
-    heroImage: string;
-  };
-};
+const Hero = () => {
+  const { hero_ctas, hero_image_url }: any = useSite();
 
-const Hero: FC<Props> = ({ heroData }) => {
-  const { ctas, heroImage, heroType, heroVideoUrl } = heroData;
+  const parsedCtas = JSON.parse(hero_ctas);
+  const parsedImage = JSON.parse(hero_image_url);
+
   return (
     <div className="relative w-full h-dynamic min-h-[650px] max-h-[650px] md:min-h-max md:max-h-max h-screen">
       <div className="absolute inset-0">
         <BlurImage
-          className="w-full h-full object-cover absolute top-0"
+          className="w-full object-cover absolute top-0"
           width={2000}
           height={1080}
           alt="Hero"
-          src={heroImage}
+          src={parsedImage}
           loading="eager"
           priority
           sizes="(max-width: 768px) 20vw,
@@ -31,13 +26,13 @@ const Hero: FC<Props> = ({ heroData }) => {
         />
 
         <div className="absolute w-full text-white top-[15%] left-0 text-center right-0 m-x-auto">
-          <h1 className="text-lg sm:text-3xl md:text-5xl font-serif">
+          <h1 className="text-lg py-4 text-white sm:text-2xl md:text-5xl font-serif drop-shadow-lg">
             Welcome to Mercedes-Benz of Seattle
           </h1>
           <div className="hidden md:flex md:flex-wrap gap-4 justify-center pt-10">
-            {ctas.map((cta: any) => (
+            {parsedCtas.map((cta: any) => (
               <Link key={cta.link} prefetch href={cta.link}>
-                <Button>{cta.label}</Button>
+                <Button color="primary">{cta.label}</Button>
               </Link>
             ))}
           </div>

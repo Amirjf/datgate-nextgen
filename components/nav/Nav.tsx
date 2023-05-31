@@ -15,18 +15,18 @@ const Nav = () => {
       >
         Shop
       </Link>
-      <a
+      {/* <a
         href="#"
         className="text-white font-bold transition-colors hover:text-primary"
       >
         Services & Parts
-      </a>
-      <a
-        href="#"
+      </a> */}
+      <Link
+        href="/about-us"
         className="text-white font-bold transition-colors hover:text-primary"
       >
         About Us
-      </a>
+      </Link>
     </Popover.Group>
   );
 };

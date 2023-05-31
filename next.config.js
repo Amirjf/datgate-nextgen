@@ -13,6 +13,7 @@ const nextConfig = {
       'vehicle-photos-published.vauto.com',
       'imageonthefly.autodatadirect.com',
       'nissan.datgate.com',
+      'nissanofportland.com',
     ],
   },
 };
