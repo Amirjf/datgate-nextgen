@@ -9,7 +9,6 @@ import { useState } from 'react';
 import NextApp from 'next/app';
 import '../styles/globals.css';
 import { SiteContext } from 'contexts/site/SiteContext';
-import { useScrollRestoration } from 'hooks/useScrollRestoration';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -35,7 +34,7 @@ function App({
   siteData,
 }: ComponentWithPageLayout) {
   const [queryClient] = useState(() => new QueryClient());
-  useScrollRestoration(router);
+  // useScrollRestoration(router);
   return (
     <div className={`${inter.variable} ${mb.variable} font-sans`}>
       <SiteContext.Provider value={siteData}>
