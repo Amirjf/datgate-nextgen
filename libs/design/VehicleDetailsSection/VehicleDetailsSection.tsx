@@ -65,7 +65,7 @@ export const VehicleDetailsSection = () => {
 
         <div className="bg-white p-2 flex flex-col gap-y-2 rounded">
           {arrayOfObjects?.map((content) => (
-            <div className="border-b mb-2">
+            <div key={content.title} className="border-b mb-2">
               <InfoLine label={content.title} value={content.content} />
             </div>
           ))}
