@@ -6,6 +6,7 @@ import useSite from 'contexts/site/SiteContext';
 import { Tab } from '@headlessui/react';
 import clsx from 'clsx';
 import { AnimatePresence, motion } from 'framer-motion';
+import Head from 'next/head';
 const AboutUsPage = () => {
   const { work_hours } = useSite();
 
@@ -14,6 +15,9 @@ const AboutUsPage = () => {
 
   return (
     <div>
+      <Head>
+        <title>About Us</title>
+      </Head>
       <TopBannerTitle
         alt="about-us-image"
         title="About Us"

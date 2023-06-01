@@ -4,7 +4,7 @@ import Link from 'next/link';
 import useSite from 'contexts/site/SiteContext';
 
 const Hero = () => {
-  const { hero_ctas, hero_image_url }: any = useSite();
+  const { hero_ctas, hero_image_url, hero_title }: any = useSite();
 
   const parsedCtas = JSON.parse(hero_ctas);
   const parsedImage = JSON.parse(hero_image_url);
@@ -27,7 +27,7 @@ const Hero = () => {
 
         <div className="absolute w-full text-white top-[15%] left-0 text-center right-0 m-x-auto">
           <h1 className="text-lg py-4 text-white sm:text-2xl md:text-5xl font-serif drop-shadow-lg">
-            Welcome to Mercedes-Benz of Seattle
+            {hero_title}
           </h1>
           <div className="hidden md:flex md:flex-wrap gap-4 justify-center pt-10">
             {parsedCtas.map((cta: any) => (

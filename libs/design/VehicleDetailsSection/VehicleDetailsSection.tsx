@@ -63,7 +63,7 @@ export const VehicleDetailsSection = () => {
       <section>
         <h2 className="text-2xl font-bold mb-4">Details</h2>
 
-        <div className="bg-white p-2 flex flex-col gap-y-2 rounded">
+        <div className="bg-white p-4 flex flex-col gap-y-2 rounded">
           {arrayOfObjects?.map((content) => (
             <div key={content.title} className="border-b mb-2">
               <InfoLine label={content.title} value={content.content} />

@@ -24,8 +24,12 @@ export const VehicleImageSlider: FC<Props> = ({ photos }) => {
               width={900}
               height={500}
               alt="vehicle-image"
+              loading="eager"
+              priority
               src={image}
-              // src={'/no-photo.jpg'}
+              sizes="(max-width: 768px) 20vw,
+              (max-width: 1200px) 50vw,
+              53vw"
             />
           </div>
         ))}
