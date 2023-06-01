@@ -9,7 +9,7 @@ const Search = () => {
           <IconSearch size={25} color="#fff" />
         </span>
         <input
-          placeholder='Search " Mercedes-Benz CLA "'
+          placeholder='Search " Nissan Altima "'
           className="bg-transparent w-full pl-10 py-2 outline-none focus:border-primary transition-all border-2 border-gray-700 rounded-full placeholder:text-white"
         />
       </div>

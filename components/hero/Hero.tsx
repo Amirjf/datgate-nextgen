@@ -10,12 +10,12 @@ const Hero = () => {
   const parsedImage = JSON.parse(hero_image_url);
 
   return (
-    <div className="relative w-full h-dynamic min-h-[650px] max-h-[650px] md:min-h-max md:max-h-max h-screen">
+    <div className="relative w-full h-dynamic min-h-[500px] max-h-[500px] md:min-h-max md:max-h-max">
       <div className="absolute inset-0">
         <BlurImage
           className="w-full object-cover absolute top-0"
           width={2000}
-          height={1080}
+          height={500}
           alt="Hero"
           src={parsedImage}
           loading="eager"
