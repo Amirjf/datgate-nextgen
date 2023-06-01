@@ -1,7 +1,7 @@
 import MainLayout from 'layouts/main';
 import React from 'react';
 import { BlurImage, Container } from '../components';
-import { TopBannerTitle } from 'libs/design/TopBannerTitle';
+import { TopBannerTitle } from 'libs/design/TopBannerTitle/TopBannerTitle';
 import useSite from 'contexts/site/SiteContext';
 import { Tab } from '@headlessui/react';
 import clsx from 'clsx';

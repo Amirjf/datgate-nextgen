@@ -1,13 +1,16 @@
 import React, { Children, useState } from 'react';
 import { useKeenSlider } from 'keen-slider/react';
 import 'keen-slider/keen-slider.min.css';
+import clsx from 'clsx';
 
 export const Slider = ({
   children,
   options,
+  className,
 }: {
   children: React.ReactNode;
   options: any;
+  className?: string;
 }) => {
   const arraySlides = Children.toArray(children);
 
@@ -15,8 +18,6 @@ export const Slider = ({
   const [loaded, setLoaded] = useState(false);
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
     initial: 0,
-    loop: true,
-
     ...options,
     slideChanged(slider) {
       setCurrentSlide(slider.track.details.rel);
@@ -26,37 +27,39 @@ export const Slider = ({
     },
   });
 
+  console.log(arraySlides, 'arraySlides');
+
   return (
     <>
-      <div className="relative">
-        <div ref={sliderRef} className="keen-slider">
+      <div className="">
+        <div ref={sliderRef} className={clsx('keen-slider', className)}>
           {arraySlides?.map((slide, index) => (
-            <div key={index} className="keen-slider__slide">
+            <div key={index} className="keen-slider__slide relative">
               {slide}
             </div>
           ))}
-        </div>
-        {loaded && instanceRef.current && (
-          <>
-            <Arrow
-              left
-              onClick={(e: any) =>
-                e.stopPropagation() || instanceRef.current?.prev()
-              }
-              disabled={currentSlide === 0}
-            />
+          {loaded && instanceRef.current && arraySlides?.length > 1 && (
+            <>
+              <Arrow
+                left
+                onClick={(e: any) =>
+                  e.stopPropagation() || instanceRef.current?.prev()
+                }
+                disabled={currentSlide === 0}
+              />
 
-            <Arrow
-              onClick={(e: any) =>
-                e.stopPropagation() || instanceRef.current?.next()
-              }
-              disabled={
-                currentSlide ===
-                instanceRef.current?.track?.details?.slides.length - 1
-              }
-            />
-          </>
-        )}
+              <Arrow
+                onClick={(e: any) =>
+                  e.stopPropagation() || instanceRef.current?.next()
+                }
+                disabled={
+                  currentSlide ===
+                  instanceRef.current?.track?.details?.slides.length - 1
+                }
+              />
+            </>
+          )}
+        </div>
       </div>
     </>
   );
@@ -70,8 +73,8 @@ function Arrow(props: {
   const disabeld = props.disabled ? 'fill-gray-100' : '';
   return (
     <div
-      className={`w-10 h-10 absolute top-1/2 translate-y-1/2 fill-white ${
-        props.left ? '-left-14' : 'left-auto -right-14'
+      className={`w-10 h-10 absolute top-1/2 z-40 cursor-pointer bg-gray-400 p-2 rounded-full fill-white ${
+        props.left ? 'left-0 ml-2' : 'left-auto right-0 mr-2'
       } ${disabeld}`}
     >
       <svg

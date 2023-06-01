@@ -1,10 +1,9 @@
 import clsx from 'clsx';
 import { useVehicles } from 'contexts/shop/VehiclesContext';
-
 import { useIntersectionObserver } from 'hooks/useIntersectionObserver';
-import Link from 'next/link';
 import React from 'react';
-import { BlurImage } from '..';
+import { VehicleCard } from '@/design';
+import { VehicleModel } from 'libs/models/VehicleModels';
 
 export const VehiclesList = () => {
   const { data, fetchNextPage, hasNextPage }: any = useVehicles();
@@ -19,31 +18,11 @@ export const VehiclesList = () => {
 
   return (
     <>
-      <div className="p-4 w-full">
-        <div className="grid grid-cols-3 gap-4 mb-4">
-          {data?.vehicles.map((cars: any, page: number) => {
-            return cars.map((car: any) => (
-              <div key={car.vehicle_id} className="flex flex-col">
-                <Link href={`/vehicle/${car.vehicle_id}`}>
-                  <BlurImage
-                    src={car.photo || '/no-photo.jpg'}
-                    width={600}
-                    height={300}
-                    alt={car.title_short}
-                    loading="eager"
-                    priority
-                    sizes="(max-width: 768px) 10vw,
-              (max-width: 1200px) 50vw,
-              53vw"
-                  />
-                </Link>
-                <Link
-                  href={`/vehicle/${car.vehicle_id}`}
-                  className="text-black"
-                >
-                  {car.title_short}
-                </Link>
-              </div>
+      <div className="p-2 w-full">
+        <div className="grid grid-cols-1 w-full justify-center gap-3 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-5 items Grid mb-4">
+          {data?.vehicles.map((cars: any) => {
+            return cars.map((car: VehicleModel) => (
+              <VehicleCard key={car.vin_number} car={car} />
             ));
           })}
 

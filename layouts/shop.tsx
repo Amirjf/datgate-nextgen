@@ -11,7 +11,7 @@ const ShopLayout = ({ children }: { children: ReactNode }) => {
         <VehiclesProvider>
           <UrlStructureProvider>
             <Header bg="bg-black" />
-            <div className="flex">{children}</div>
+            <div className="flex bg-gray-100">{children}</div>
           </UrlStructureProvider>
         </VehiclesProvider>
       </InventoryProvider>

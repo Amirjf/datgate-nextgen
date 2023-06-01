@@ -7,9 +7,6 @@ import {
 } from '@/components/ui';
 import MainLayout from 'layouts/main';
 import Head from 'next/head';
-import { FC } from 'react';
-
-type Props = { homepageData: any };
 
 const Home = () => {
   return (
