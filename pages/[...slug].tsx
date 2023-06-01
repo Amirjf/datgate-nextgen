@@ -3,7 +3,7 @@ import { VehiclesList } from 'components/VehiclesList/VehiclesList';
 import ShopSidebar from 'components/shop-sidebar/ShopSidebar';
 import { InventoryContext } from 'contexts/shop/InventoryContext';
 import ShopLayout from 'layouts/shop';
-import { GetServerSideProps, GetStaticPaths } from 'next';
+import { GetServerSideProps, GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
@@ -40,9 +40,6 @@ const Inventory = ({ filterData }: any) => {
     });
   }, [filterData]);
 
-  const router = useRouter();
-  console.log(router);
-
   return (
     <>
       <Head>
@@ -55,14 +52,15 @@ const Inventory = ({ filterData }: any) => {
   );
 };
 
-export const getStaticProps: GetServerSideProps = async (context) => {
+export const getStaticProps: GetStaticProps = async (context) => {
   // context.res.setHeader(
   //   'Cache-Control',
   //   'public, s-maxage=10, stale-while-revalidate=59'
   // );
-
+  //@ts-ignore
+  const getUrl = context.params.slug.join('/');
   const queryClient = new QueryClient();
-  await fetchInventory(queryClient, context);
+  await fetchInventory(queryClient, `/${getUrl}`);
   return {
     props: {
       dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),

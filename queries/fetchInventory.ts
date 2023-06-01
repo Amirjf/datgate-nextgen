@@ -1,10 +1,7 @@
 import { QueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 
-export const fetchInventory = async (
-  queryClient: QueryClient,
-  context: any
-) => {
+export const fetchInventory = async (queryClient: QueryClient, url: any) => {
   return await queryClient.prefetchInfiniteQuery(
     ['vehicles', {}],
     async ({ pageParam = 1 }) => {
@@ -12,7 +9,7 @@ export const fetchInventory = async (
         'https://api2.dealertower.com/inventory/nissan.datgate.com',
         {
           page: pageParam,
-          url_filtering: context.resolvedUrl,
+          url_filtering: url,
         }
       );
       return data.data;
