@@ -20,13 +20,14 @@ export const VehicleImageSlider: FC<Props> = ({ photos }) => {
         {photos.map((image: any) => (
           <div key={image}>
             <BlurImage
+              // src={image}
+              src={'/no-photo.jpg'}
+              alt="vehicle-image"
               className="w-full"
               width={900}
               height={500}
-              alt="vehicle-image"
               loading="eager"
               priority
-              src={image}
               sizes="(max-width: 768px) 20vw,
               (max-width: 1200px) 50vw,
               53vw"

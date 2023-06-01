@@ -5,7 +5,7 @@ import { Header } from '../components';
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
-      <Header />
+      <Header bg="backdrop-blur-md bg-gray-400/30" />
       <main>{children}</main>
       <Footer />
     </>

@@ -28,8 +28,8 @@ export const VehicleCard: FC<Props> = ({ car }) => {
       <div className="flex flex-col h-full hover:border-2 hover:border-primary border-2 border-gray-100 transition-all">
         <div className="">
           <BlurImage
-            src={photo}
-            // src={'/no-photo.jpg'}
+            // src={photo}
+            src={'/no-photo.jpg'}
             className="w-full"
             width={600}
             height={300}

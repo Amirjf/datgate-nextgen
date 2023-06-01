@@ -13,7 +13,7 @@ type Props = {
   bg?: string;
 };
 
-const Header: FC<Props> = ({ bg = 'backdrop-blur-md bg-gray-400/30' }) => {
+const Header: FC<Props> = ({ bg = 'bg-black' }) => {
   const scrollPostion = useScrollPosition(74);
   const { pathname } = useRouter();
 
