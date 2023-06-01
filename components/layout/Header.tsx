@@ -42,9 +42,11 @@ const Header: FC<Props> = ({ bg = 'backdrop-blur-md bg-gray-400/30' }) => {
                 <Image
                   width={370}
                   height={100}
+                  loading="eager"
+                  priority
                   className="h-10 w-auto sm:h-14"
-                  src="https://mbseattle.datgate.com/content/uploads/2023/01/mb-seatlle-logo.jpg"
-                  alt=""
+                  src="/nissan-logo.jpg"
+                  alt="logo"
                 />
               </Link>
               <div className="-my-2 -mr-2 lg:hidden">

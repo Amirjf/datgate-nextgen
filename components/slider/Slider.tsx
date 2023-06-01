@@ -17,7 +17,7 @@ export const Slider = ({
   const [currentSlide, setCurrentSlide] = React.useState(0);
   const [loaded, setLoaded] = useState(false);
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
-    initial: 0,
+    // initial: 0,
     ...options,
     slideChanged(slider) {
       setCurrentSlide(slider.track.details.rel);
@@ -70,7 +70,7 @@ function Arrow(props: {
   left?: boolean;
   onClick: (e: any) => void;
 }) {
-  const disabeld = props.disabled ? 'fill-gray-100' : '';
+  const disabeld = props.disabled ? 'opacity-30' : '';
   return (
     <div
       className={`w-10 h-10 absolute top-1/2 z-40 cursor-pointer bg-gray-400 p-2 rounded-full fill-white ${
