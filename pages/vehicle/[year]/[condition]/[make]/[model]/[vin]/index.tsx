@@ -1,13 +1,6 @@
 import { InfoLine, VehicleImageSlider } from '@/design';
-import {
-  QueryClient,
-  dehydrate,
-  useQuery,
-  useQueryClient,
-} from '@tanstack/react-query';
+import { QueryClient, dehydrate, useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import { BlurImage } from 'components/BlurImage';
-// import { Slider } from 'components/slider';
 import MainLayout from 'layouts/main';
 import { VehicleDetailsSection } from 'libs/design/VehicleDetailsSection/VehicleDetailsSection';
 import { GetServerSideProps } from 'next';
@@ -44,7 +37,7 @@ const VehicleDetailsPage = () => {
     dealer_city,
   } = data;
 
-  const { year, make, model, vin, condition: queryCondition } = query;
+  const { year, make, model, condition: queryCondition } = query;
 
   return (
     <>

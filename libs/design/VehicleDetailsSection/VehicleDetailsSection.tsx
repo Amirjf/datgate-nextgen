@@ -56,8 +56,6 @@ export const VehicleDetailsSection = () => {
     }
   }
 
-  console.log(arrayOfObjects, 'arrayOfObjects');
-
   return (
     <>
       <section>

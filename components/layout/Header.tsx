@@ -27,7 +27,6 @@ const Header: FC<Props> = ({ bg = 'backdrop-blur-md bg-gray-400/30' }) => {
         pathname !== '/' ? 'bg-black' : ''
       )}
     >
-      {/* <TopHeader setOpenMenu={setOpenMenu} /> */}
       <AnimatePresence>
         <div
           className={clsx(
