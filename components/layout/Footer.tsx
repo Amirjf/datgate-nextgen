@@ -5,10 +5,10 @@ const Footer = () => {
     <footer className="bg-black">
       <div className="grid grid-cols-2 gap-8 px-6 py-8 md:grid-cols-4">
         <div>
-          <h2 className="mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">
+          <h2 className="mb-6 text-sm font-semibold text-white uppercase dark:text-gray-400">
             Company
           </h2>
-          <ul className="text-gray-500 dark:text-gray-400">
+          <ul className="text-white dark:text-gray-400">
             <li className="mb-4">
               <a href="#" className=" hover:underline">
                 About
@@ -32,10 +32,10 @@ const Footer = () => {
           </ul>
         </div>
         <div>
-          <h2 className="mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">
+          <h2 className="mb-6 text-sm font-semibold text-white uppercase dark:text-gray-400">
             Help center
           </h2>
-          <ul className="text-gray-500 dark:text-gray-400">
+          <ul className="text-white dark:text-gray-400">
             <li className="mb-4">
               <a href="#" className="hover:underline">
                 Discord Server
@@ -59,10 +59,10 @@ const Footer = () => {
           </ul>
         </div>
         <div>
-          <h2 className="mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">
+          <h2 className="mb-6 text-sm font-semibold text-white uppercase dark:text-gray-400">
             Legal
           </h2>
-          <ul className="text-gray-500 dark:text-gray-400">
+          <ul className="text-white dark:text-gray-400">
             <li className="mb-4">
               <a href="#" className="hover:underline">
                 Privacy Policy
@@ -81,10 +81,10 @@ const Footer = () => {
           </ul>
         </div>
         <div>
-          <h2 className="mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">
+          <h2 className="mb-6 text-sm font-semibold text-white uppercase dark:text-gray-400">
             Download
           </h2>
-          <ul className="text-gray-500 dark:text-gray-400">
+          <ul className="text-white dark:text-gray-400">
             <li className="mb-4">
               <a href="#" className="hover:underline">
                 iOS
@@ -109,7 +109,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="px-4 py-6 border-t border-t-gray-800   md:flex md:items-center md:justify-between">
-        <span className="text-sm text-gray-500 dark:text-gray-300 sm:text-center">
+        <span className="text-sm text-white dark:text-gray-300 sm:text-center">
           © 2023 <a href="https://flowbite.com/">Flowbite™</a>. All Rights
           Reserved.
         </span>

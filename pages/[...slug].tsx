@@ -4,6 +4,7 @@ import ShopSidebar from 'components/shop-sidebar/ShopSidebar';
 import { InventoryContext } from 'contexts/shop/InventoryContext';
 import ShopLayout from 'layouts/shop';
 import { GetServerSideProps } from 'next';
+import Head from 'next/head';
 
 import { fetchInventory } from 'queries/fetchInventory';
 import React, { useContext } from 'react';
@@ -40,8 +41,11 @@ const Inventory = ({ filterData }: any) => {
 
   return (
     <>
+      <Head>
+        <title>Inventory</title>
+        <meta property="description" name="description" content="Inventory" />
+      </Head>
       <ShopSidebar />
-
       <VehiclesList />
     </>
   );
