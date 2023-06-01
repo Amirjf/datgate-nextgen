@@ -25,7 +25,6 @@ export const VehicleImageSlider: FC<Props> = ({ photos }) => {
               height={500}
               alt="vehicle-image"
               src={image}
-              // src={'/no-photo.jpg'}
             />
           </div>
         ))}
