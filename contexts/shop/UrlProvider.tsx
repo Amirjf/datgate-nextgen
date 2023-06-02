@@ -1,8 +1,5 @@
 import { createContext, FC, useEffect } from 'react';
-
 import queryString from 'query-string';
-
-import { useSsr } from 'usehooks-ts';
 import { convertArrayToObject } from 'pages/[...slug]';
 import { useVehicles } from './VehiclesContext';
 import { useRouter } from 'next/router';
@@ -89,7 +86,6 @@ export const UrlStructureProvider: FC<any> = ({ children }) => {
   const { data }: any = useVehicles();
   const router = useRouter();
   const selectedFilters = data?.selectedFilters;
-  const { isBrowser } = useSsr();
 
   useEffect(() => {
     const refactorFiltersForParse = convertArrayToObject(selectedFilters);
@@ -139,7 +135,6 @@ export const UrlStructureProvider: FC<any> = ({ children }) => {
     // if (isBrowser) {
     // window.history.replaceState({}, 'filters', `/` + finalEncodedURL);
     router.replace(finalEncodedURL, undefined, { shallow: true });
-    // }
   }, [selectedFilters]);
 
   return (

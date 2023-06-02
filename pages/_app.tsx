@@ -1,5 +1,5 @@
 import type { AppProps } from 'next/app';
-import { Inter, Noto_Serif } from '@next/font/google';
+import { Poppins } from '@next/font/google';
 import {
   Hydrate,
   QueryClient,
@@ -11,63 +11,57 @@ import '../styles/globals.css';
 import { SiteContext } from 'contexts/site/SiteContext';
 import { useScrollRestoration } from 'hooks/useScrollRestoration';
 
-const inter = Inter({
+const poppins = Poppins({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700', '800'],
   variable: '--font-inter',
 });
-const mb = Noto_Serif({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  variable: '--font-mb',
-});
+
+// const mb = Noto_Serif({
+//   subsets: ['latin'],
+//   weight: ['400', '700'],
+//   variable: '--font-mb',
+// });
 
 type ComponentWithPageLayout = AppProps & {
   Component: AppProps['Component'] & {
     PageLayout?: React.ComponentType;
   };
-} & { siteData: any };
+};
 
-function App({
-  Component,
-  pageProps,
-  router,
-  siteData,
-}: ComponentWithPageLayout) {
+function App({ Component, pageProps, router }: ComponentWithPageLayout) {
   const [queryClient] = useState(() => new QueryClient());
   useScrollRestoration(router);
   return (
-    <div className={`${inter.variable} ${mb.variable} font-sans`}>
-      <SiteContext.Provider value={siteData}>
-        <QueryClientProvider client={queryClient}>
-          <Hydrate state={pageProps.dehydratedState}>
-            {Component.PageLayout ? (
-              //@ts-ignore
-              <Component.PageLayout>
-                <Component {...pageProps} />
-              </Component.PageLayout>
-            ) : (
+    <div className={`${poppins.variable} font-sans`}>
+      <QueryClientProvider client={queryClient}>
+        <Hydrate state={pageProps.dehydratedState}>
+          {Component.PageLayout ? (
+            //@ts-ignore
+            <Component.PageLayout>
               <Component {...pageProps} />
-            )}
-          </Hydrate>
-        </QueryClientProvider>
-      </SiteContext.Provider>
+            </Component.PageLayout>
+          ) : (
+            <Component {...pageProps} />
+          )}
+        </Hydrate>
+      </QueryClientProvider>
     </div>
   );
 }
 
-App.getInitialProps = async function (appContext: any) {
-  const appProps = await NextApp.getInitialProps(appContext);
+// App.getInitialProps = async function (appContext: any) {
+//   const appProps = await NextApp.getInitialProps(appContext);
 
-  const response = await fetch(
-    'https://api2.dealertower.com/dealer/nissan.datgate.com/get-information'
-  );
-  const { data } = await response.json();
+//   const response = await fetch(
+//     'https://api2.dealertower.com/dealer/nissan.datgate.com/get-information'
+//   );
+//   const { data } = await response.json();
 
-  return {
-    ...appProps,
-    siteData: data,
-  };
-};
+//   return {
+//     ...appProps,
+//     siteData: data,
+//   };
+// };
 
 export default App;

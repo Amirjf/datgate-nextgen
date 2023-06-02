@@ -27,8 +27,6 @@ export const Slider = ({
     },
   });
 
-  console.log(arraySlides, 'arraySlides');
-
   return (
     <>
       <div className="">
