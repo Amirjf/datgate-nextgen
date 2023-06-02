@@ -16,7 +16,7 @@ const Hero = () => {
     <section className="relative">
       <div className="absolute inset-0 bg-black/40 sm:bg-transparent sm:from-black/50 sm:to-black/25 bg-gradient-to-r z-20" />
 
-      <div className="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8 z-30">
+      <div className="relative mx-auto max-w-screen-2xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8 z-30">
         <div className="max-w-4xl text-center sm:text-left">
           <h1 className="text-3xl text-white font-extrabold sm:text-5xl">
             {hero_title}

@@ -3,10 +3,20 @@ import { Tab } from '@headlessui/react';
 import clsx from 'clsx';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ModelItem } from '@/components/ui';
+import useSite from 'contexts/site/SiteContext';
+
+const BODY_STYLES = ['SUVs', 'Sedans & Wagons', 'Coupes', 'Trucks'];
 
 const NewVehiclesContent = () => {
-  // const { inventoryData } = useSite();
-  // console.log(inventoryData, 'data');
+  const { inventoryData }: any = useSite();
+  const { available_filters } = inventoryData;
+
+  const getModelFilters = available_filters.find(
+    (filter: any) => filter.name === 'model'
+  ).value;
+
+  console.log(getModelFilters, 'data');
+
   let [categories] = useState({
     SUV: [
       {
@@ -155,7 +165,7 @@ const NewVehiclesContent = () => {
     <div className="w-full px-2 py-5 sm:px-0">
       <Tab.Group>
         <Tab.List className="flex rounded-xs mb-0">
-          {Object.keys(categories).map((category) => (
+          {BODY_STYLES.map((category) => (
             <Tab
               key={category}
               className="w-full py-2.5 relative text-md font-semibold mb-0 outline-none text-gray-400 hover:bg-white/[0.12] border-b-4 border-b-gray-200 hover:text-black"

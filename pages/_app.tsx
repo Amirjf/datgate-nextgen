@@ -49,7 +49,11 @@ function App({
       >
         <QueryClientProvider client={queryClient}>
           <Hydrate state={pageProps.dehydratedState}>
-            <NextNProgress color="#9d3232" height={3} />
+            <NextNProgress
+              options={{ showSpinner: false }}
+              color="#9d3232"
+              height={3}
+            />
             {Component.PageLayout ? (
               //@ts-ignore
               <Component.PageLayout>

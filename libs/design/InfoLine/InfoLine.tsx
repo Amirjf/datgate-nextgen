@@ -11,7 +11,7 @@ export const InfoLine: FC<Props> = ({ label, value, className }) => {
   return (
     <div className="flex justify-between">
       <span className="text-gray-500 capitalize">{label}</span>
-      <span className={clsx('font-bold', className)}>{value}</span>
+      <span className={clsx('font-semibold', className)}>{value}</span>
     </div>
   );
 };

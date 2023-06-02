@@ -1,16 +1,7 @@
-import { useQuery } from '@tanstack/react-query';
-import { useRouter } from 'next/router';
-import { fetchVehicleInfo } from 'pages/vehicle/[year]/[condition]/[make]/[model]/[vin]';
 import React from 'react';
 import { InfoLine } from '../InfoLine';
 
-export const VehicleDetailsSection = () => {
-  const { query }: any = useRouter();
-
-  const { data } = useQuery(['vehicle', query.vin], () =>
-    fetchVehicleInfo(query.vin)
-  );
-
+export const VehicleDetailsSection = ({ vehicleData }: any) => {
   const {
     trim,
     transmission,
@@ -25,7 +16,7 @@ export const VehicleDetailsSection = () => {
     doors,
     year,
     model,
-  } = data;
+  } = vehicleData;
 
   const getData = {
     make,
@@ -63,7 +54,7 @@ export const VehicleDetailsSection = () => {
 
         <div className="bg-white p-4 flex flex-col gap-y-2 rounded">
           {arrayOfObjects?.map((content) => (
-            <div key={content.title} className="border-b mb-2">
+            <div key={content.title} className="border-b mb-4">
               <InfoLine label={content.title} value={content.content} />
             </div>
           ))}

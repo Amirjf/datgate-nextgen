@@ -1,6 +1,6 @@
 import { InfoLine, VehicleImageSlider } from '@/design';
-import { QueryClient, dehydrate, useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+import { Button } from 'components/button';
 import MainLayout from 'layouts/main';
 import { VehicleDetailsSection } from 'libs/design/VehicleDetailsSection/VehicleDetailsSection';
 import { GetServerSideProps } from 'next';
@@ -17,12 +17,8 @@ export const fetchVehicleInfo = async (vin: string) => {
   return data.data;
 };
 
-const VehicleDetailsPage = () => {
+const VehicleDetailsPage = ({ vehicleData }: any) => {
   const { query }: any = useRouter();
-
-  const { data } = useQuery(['vehicle', query.vin], () =>
-    fetchVehicleInfo(query.vin)
-  );
 
   const {
     photos,
@@ -35,9 +31,16 @@ const VehicleDetailsPage = () => {
     dealer_name,
     dealer_state,
     dealer_city,
-  } = data;
+    cta,
+  } = vehicleData;
+
+  console.log(cta, 'cta');
 
   const { year, make, model, condition: queryCondition } = query;
+
+  const sliderBlock = 'col-span-2 rounded';
+  const vdpInfoBlock =
+    'bg-white shadow w-full col-span-2 lg:col-span-1 max-h-96 lg:sticky top-4 rounded my-4 lg:my-0';
 
   return (
     <>
@@ -51,18 +54,15 @@ const VehicleDetailsPage = () => {
       </Head>
       <div className="bg-gray-100">
         <div className="container mx-auto max-w-screen-2xl px-4 xxl:px-0 py-10">
-          <div className="grid w-full gap-x-4 grid-cols-1 md:grid-cols-3">
-            <div className="col-span-2 rounded">
+          <div className="grid w-full gap-x-4 grid-cols-1 lg:grid-cols-3">
+            <div className={sliderBlock}>
               <VehicleImageSlider photos={photos} />
-              <div className="mt-4">
-                <VehicleDetailsSection />
-              </div>
             </div>
 
-            <div className="bg-white max-h-96 sticky top-4 rounded">
+            <div className={vdpInfoBlock}>
               <div className="p-4">
                 <div className="flex justify-between items-center border-b-2 pb-2">
-                  <h1 className="font-bold text-lg">{title_short}</h1>
+                  <h1 className="font-semibold text-lg">{title_short}</h1>
                   <p className="font-bold text-lg">{formatted_price}</p>
                 </div>
 
@@ -76,7 +76,23 @@ const VehicleDetailsPage = () => {
                     value={condition}
                   />
                 </div>
+
+                <div className="mt-4">
+                  <div className="flex flex-col gap-4">
+                    {cta.map((button: any) => (
+                      <Button
+                        className={`bg-[${button.btn_styles.bg}] uppercase`}
+                      >
+                        {button.cta_label}
+                      </Button>
+                    ))}
+                  </div>
+                </div>
               </div>
+            </div>
+
+            <div className="mt-4 col-span-2">
+              <VehicleDetailsSection vehicleData={vehicleData} />
             </div>
           </div>
         </div>
@@ -85,13 +101,23 @@ const VehicleDetailsPage = () => {
   );
 };
 
+// export const getServerSideProps: GetServerSideProps = async (context: any) => {
+//   const queryClient = new QueryClient();
+//   await fetchVehicle(context.params.vin, queryClient);
+
+//   return {
+//     props: {
+//       vehicleData: JSON.parse(JSON.stringify(dehydrate(queryClient))),
+//     },
+//   };
+// };
+
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
-  const queryClient = new QueryClient();
-  await fetchVehicle(context.params.vin, queryClient);
+  const data = await fetchVehicle(context.params.vin);
 
   return {
     props: {
-      dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
+      vehicleData: data,
     },
   };
 };

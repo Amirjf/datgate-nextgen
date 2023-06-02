@@ -9,7 +9,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 import useSite from 'contexts/site/SiteContext';
 
 const AboutUsPage = () => {
-  const { work_hours } = useSite();
+  const { siteData }: any = useSite();
+  const { work_hours } = siteData;
 
   const labels = work_hours.map((hour: any) => hour.label);
   const hours = work_hours.map((hour: any) => hour.value);

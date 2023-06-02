@@ -29,7 +29,6 @@ export const VehicleCard: FC<Props> = ({ car }) => {
         <div className="">
           <BlurImage
             src={photo}
-            // src={'/no-photo.jpg'}
             className="w-full"
             width={600}
             height={300}
