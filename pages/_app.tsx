@@ -12,6 +12,7 @@ import { useScrollRestoration } from 'hooks/useScrollRestoration';
 import { SiteContext } from 'contexts/site/SiteContext';
 import NextNProgress from 'nextjs-progressbar';
 import { siteDataFetcher } from 'queries/fetchSiteData';
+import { fetchInventoryData } from '@/data-layer';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -29,22 +30,26 @@ type ComponentWithPageLayout = AppProps & {
   Component: AppProps['Component'] & {
     PageLayout?: React.ComponentType;
   };
-} & { siteData: any };
+} & { siteData: any; inventoryData: any };
 
 function App({
   Component,
   pageProps,
   router,
   siteData,
+  inventoryData,
 }: ComponentWithPageLayout) {
   const [queryClient] = useState(() => new QueryClient());
   useScrollRestoration(router);
   return (
     <div className={`${poppins.variable} font-sans`}>
-      <SiteContext.Provider value={siteData}>
+      <SiteContext.Provider
+        //@ts-ignore
+        value={{ siteData: siteData, inventoryData: inventoryData }}
+      >
         <QueryClientProvider client={queryClient}>
           <Hydrate state={pageProps.dehydratedState}>
-            <NextNProgress color="#000" height={3} />
+            <NextNProgress color="#9d3232" height={3} />
             {Component.PageLayout ? (
               //@ts-ignore
               <Component.PageLayout>
@@ -63,10 +68,12 @@ function App({
 App.getInitialProps = async function (appContext: any) {
   const appProps = await NextApp.getInitialProps(appContext);
   const data = await siteDataFetcher();
+  const srpData = await fetchInventoryData();
 
   return {
     ...appProps,
     siteData: data,
+    inventoryData: srpData,
   };
 };
 

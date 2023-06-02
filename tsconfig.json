@@ -19,7 +19,8 @@
       "@/components/ui": ["components/index"],
       "@/hooks": ["hooks/index"],
       "@/design": ["libs/design/index"],
-      "@/models": ["libs/models/index"]
+      "@/models": ["libs/models/index"],
+      "@/data-layer": ["libs/data-layer/index"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "libs"],

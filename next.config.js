@@ -4,7 +4,7 @@ const nextConfig = {
   swcMinify: true,
   // experimental: { scrollRestoration: true },
   images: {
-    // unoptimized: true,
+    unoptimized: true,
     domains: [
       'www.mbusa.com',
       'mbseattle.datgate.com',

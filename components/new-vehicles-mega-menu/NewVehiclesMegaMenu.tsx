@@ -5,6 +5,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { ModelItem } from '@/components/ui';
 
 const NewVehiclesContent = () => {
+  // const { inventoryData } = useSite();
+  // console.log(inventoryData, 'data');
   let [categories] = useState({
     SUV: [
       {

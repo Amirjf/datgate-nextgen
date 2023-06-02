@@ -17,7 +17,7 @@ export const TopBannerTitle: FC<Props> = ({ title, image, alt }) => {
         alt={alt}
         src={image}
       />
-      <h1 className="text-white absolute inset-0 grid place-items-center text-4xl font-serif font-bold bg-gray-900/20">
+      <h1 className="text-white absolute inset-0 grid place-items-center text-5xl font-serif font-bold bg-gray-900/20">
         {title}
       </h1>
     </div>

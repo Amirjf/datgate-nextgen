@@ -68,7 +68,10 @@ interface SiteContextModel {
 
 export const SiteContext = createContext(null);
 
-export function useSiteContext(data: SiteContextModel) {
+export function useSiteContext(data: {
+  siteData: SiteContextModel;
+  inventoryData: any;
+}) {
   return data;
 }
 
