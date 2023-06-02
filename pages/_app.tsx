@@ -44,13 +44,7 @@ function App({
       <SiteContext.Provider value={siteData}>
         <QueryClientProvider client={queryClient}>
           <Hydrate state={pageProps.dehydratedState}>
-            <NextNProgress
-              color="#29D"
-              startPosition={0.3}
-              stopDelayMs={200}
-              height={3}
-              showOnShallow={true}
-            />
+            <NextNProgress color="#000" height={3} />
             {Component.PageLayout ? (
               //@ts-ignore
               <Component.PageLayout>

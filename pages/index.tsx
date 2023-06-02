@@ -6,9 +6,8 @@ import {
   ReviewsSection,
 } from '@/components/ui';
 import MainLayout from 'layouts/main';
-import { GetStaticProps } from 'next';
+
 import Head from 'next/head';
-import { siteDataFetcher } from 'queries/fetchSiteData';
 
 const Home = () => {
   return (
@@ -31,16 +30,16 @@ const Home = () => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  const data = await siteDataFetcher();
+// export const getStaticProps: GetStaticProps = async (context) => {
+//   const data = await siteDataFetcher();
 
-  return {
-    props: {
-      siteData: data,
-    },
-    revalidate: 60,
-  };
-};
+//   return {
+//     props: {
+//       siteData: data,
+//     },
+//     revalidate: 60,
+//   };
+// };
 
 Home.PageLayout = MainLayout;
 
