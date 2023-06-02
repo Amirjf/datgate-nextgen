@@ -69,12 +69,6 @@ const Inventory = ({ filterData }: any) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  // context.res.setHeader(
-  //   'Cache-Control',
-  //   'public, s-maxage=10, stale-while-revalidate=59'
-  // );
-
-  // const getUrl = context.params.slug.join('/');
   const queryClient = new QueryClient();
   await fetchInventory(queryClient, context.resolvedUrl);
   return {

@@ -9,6 +9,7 @@ import { SiteContext } from 'contexts/site/SiteContext';
 import MainLayout from 'layouts/main';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
+import { siteDataFetcher } from 'queries/fetchSiteData';
 
 const Home = ({ siteData }: any) => {
   return (
@@ -33,10 +34,7 @@ const Home = ({ siteData }: any) => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const response = await fetch(
-    'https://api2.dealertower.com/dealer/nissan.datgate.com/get-information'
-  );
-  const { data } = await response.json();
+  const data = await siteDataFetcher();
 
   return {
     props: {

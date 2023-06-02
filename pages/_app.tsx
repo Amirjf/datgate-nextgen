@@ -6,9 +6,7 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query';
 import { useState } from 'react';
-import NextApp from 'next/app';
 import '../styles/globals.css';
-import { SiteContext } from 'contexts/site/SiteContext';
 import { useScrollRestoration } from 'hooks/useScrollRestoration';
 
 const poppins = Poppins({

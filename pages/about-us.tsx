@@ -1,17 +1,19 @@
 import MainLayout from 'layouts/main';
 import React from 'react';
-import { BlurImage, Container } from '../components';
+import { Container } from '../components';
 import { TopBannerTitle } from 'libs/design/TopBannerTitle/TopBannerTitle';
-import useSite from 'contexts/site/SiteContext';
 import { Tab } from '@headlessui/react';
 import clsx from 'clsx';
 import { AnimatePresence, motion } from 'framer-motion';
 import Head from 'next/head';
-const AboutUsPage = () => {
-  const { work_hours } = useSite();
 
-  const labels = work_hours.map((hour) => hour.label);
-  const hours = work_hours.map((hour) => hour.value);
+import { GetStaticProps } from 'next';
+import { siteDataFetcher } from 'queries/fetchSiteData';
+const AboutUsPage = ({ data }: any) => {
+  const { work_hours } = data;
+
+  const labels = work_hours.map((hour: any) => hour.label);
+  const hours = work_hours.map((hour: any) => hour.value);
 
   return (
     <div>
@@ -72,7 +74,7 @@ const AboutUsPage = () => {
                   ))}
                 </Tab.List>
                 <Tab.Panels as={motion.div} layout className="">
-                  {hours.map((hour, idx) => (
+                  {hours.map((hour: any, idx: any) => (
                     <Tab.Panel
                       as={motion.div}
                       key={idx}
@@ -81,7 +83,7 @@ const AboutUsPage = () => {
                     >
                       <AnimatePresence>
                         <motion.ul layout className="flex flex-col">
-                          {hour.map((time, i) => (
+                          {hour.map((time: any, i: any) => (
                             <motion.li
                               className="flex justify-between border-b mb-5"
                               key={`${time.label} - ${i}`}
@@ -112,6 +114,17 @@ const AboutUsPage = () => {
       </Container>
     </div>
   );
+};
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  const data = await siteDataFetcher();
+
+  return {
+    props: {
+      data,
+    },
+    revalidate: 60,
+  };
 };
 
 AboutUsPage.PageLayout = MainLayout;
