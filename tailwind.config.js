@@ -15,8 +15,7 @@ module.exports = {
         primary: '#176db7',
       },
       fontFamily: {
-        sans: ['var(--font-inter)', ...fontFamily.sans],
-        serif: ['var(--font-mb)', ...fontFamily.serif],
+        sans: ['var(--font-poppins)', ...fontFamily.sans],
       },
       backgroundSize: {
         'size-200': '200% 200%',

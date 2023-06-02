@@ -23,7 +23,7 @@ export const VehicleImageSlider: FC<Props> = ({ photos }) => {
               src={image}
               // src={'/no-photo.jpg'}
               alt="vehicle-image"
-              className="w-full"
+              className="w-full aspect-[3/2] object-cover"
               width={900}
               height={500}
               loading="eager"

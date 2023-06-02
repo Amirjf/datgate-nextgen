@@ -51,7 +51,7 @@ const VehicleDetailsPage = ({ vehicleData }: any) => {
         />
       </Head>
       <div className="bg-gray-100">
-        <div className="container mx-auto max-w-screen-2xl px-4 xxl:px-0 py-10">
+        <div className="lg:container mx-auto max-w-screen-2xl lg:px-4 xxl:px-0 py-10">
           <div className="grid w-full gap-x-4 grid-cols-1 lg:grid-cols-3">
             <div className={sliderBlock}>
               <VehicleImageSlider photos={photos} />
@@ -76,7 +76,7 @@ const VehicleDetailsPage = ({ vehicleData }: any) => {
                 </div>
 
                 <div className="mt-4">
-                  <div className="flex flex-col gap-4">
+                  <div className="flex flex-col gap-2">
                     {cta.map((button: any) => (
                       <Button
                         key={button.cta_label}
