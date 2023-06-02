@@ -1,16 +1,15 @@
-import MainLayout from 'layouts/main';
 import React from 'react';
+import Head from 'next/head';
+import MainLayout from 'layouts/main';
 import { Container } from '../components';
 import { TopBannerTitle } from 'libs/design/TopBannerTitle/TopBannerTitle';
 import { Tab } from '@headlessui/react';
 import clsx from 'clsx';
 import { AnimatePresence, motion } from 'framer-motion';
-import Head from 'next/head';
+import useSite from 'contexts/site/SiteContext';
 
-import { GetStaticProps } from 'next';
-import { siteDataFetcher } from 'queries/fetchSiteData';
-const AboutUsPage = ({ data }: any) => {
-  const { work_hours } = data;
+const AboutUsPage = () => {
+  const { work_hours } = useSite();
 
   const labels = work_hours.map((hour: any) => hour.label);
   const hours = work_hours.map((hour: any) => hour.value);
@@ -116,16 +115,16 @@ const AboutUsPage = ({ data }: any) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  const data = await siteDataFetcher();
+// export const getStaticProps: GetStaticProps = async (context) => {
+//   const data = await siteDataFetcher();
 
-  return {
-    props: {
-      data,
-    },
-    revalidate: 60,
-  };
-};
+//   return {
+//     props: {
+//       data,
+//     },
+//     revalidate: 60,
+//   };
+// };
 
 AboutUsPage.PageLayout = MainLayout;
 

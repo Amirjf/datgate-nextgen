@@ -1,4 +1,5 @@
 import type { AppProps } from 'next/app';
+import NextApp from 'next/app';
 import { Poppins } from '@next/font/google';
 import {
   Hydrate,
@@ -8,6 +9,9 @@ import {
 import { useState } from 'react';
 import '../styles/globals.css';
 import { useScrollRestoration } from 'hooks/useScrollRestoration';
+import { SiteContext } from 'contexts/site/SiteContext';
+import NextNProgress from 'nextjs-progressbar';
+import { siteDataFetcher } from 'queries/fetchSiteData';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -25,41 +29,51 @@ type ComponentWithPageLayout = AppProps & {
   Component: AppProps['Component'] & {
     PageLayout?: React.ComponentType;
   };
-};
+} & { siteData: any };
 
-function App({ Component, pageProps, router }: ComponentWithPageLayout) {
+function App({
+  Component,
+  pageProps,
+  router,
+  siteData,
+}: ComponentWithPageLayout) {
   const [queryClient] = useState(() => new QueryClient());
   useScrollRestoration(router);
   return (
     <div className={`${poppins.variable} font-sans`}>
-      <QueryClientProvider client={queryClient}>
-        <Hydrate state={pageProps.dehydratedState}>
-          {Component.PageLayout ? (
-            //@ts-ignore
-            <Component.PageLayout>
+      <SiteContext.Provider value={siteData}>
+        <QueryClientProvider client={queryClient}>
+          <Hydrate state={pageProps.dehydratedState}>
+            <NextNProgress
+              color="#29D"
+              startPosition={0.3}
+              stopDelayMs={200}
+              height={3}
+              showOnShallow={true}
+            />
+            {Component.PageLayout ? (
+              //@ts-ignore
+              <Component.PageLayout>
+                <Component {...pageProps} />
+              </Component.PageLayout>
+            ) : (
               <Component {...pageProps} />
-            </Component.PageLayout>
-          ) : (
-            <Component {...pageProps} />
-          )}
-        </Hydrate>
-      </QueryClientProvider>
+            )}
+          </Hydrate>
+        </QueryClientProvider>
+      </SiteContext.Provider>
     </div>
   );
 }
 
-// App.getInitialProps = async function (appContext: any) {
-//   const appProps = await NextApp.getInitialProps(appContext);
+App.getInitialProps = async function (appContext: any) {
+  const appProps = await NextApp.getInitialProps(appContext);
+  const data = await siteDataFetcher();
 
-//   const response = await fetch(
-//     'https://api2.dealertower.com/dealer/nissan.datgate.com/get-information'
-//   );
-//   const { data } = await response.json();
-
-//   return {
-//     ...appProps,
-//     siteData: data,
-//   };
-// };
+  return {
+    ...appProps,
+    siteData: data,
+  };
+};
 
 export default App;

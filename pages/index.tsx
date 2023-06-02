@@ -5,13 +5,12 @@ import {
   ModelSection,
   ReviewsSection,
 } from '@/components/ui';
-import { SiteContext } from 'contexts/site/SiteContext';
 import MainLayout from 'layouts/main';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import { siteDataFetcher } from 'queries/fetchSiteData';
 
-const Home = ({ siteData }: any) => {
+const Home = () => {
   return (
     <>
       <Head>
@@ -22,13 +21,12 @@ const Home = ({ siteData }: any) => {
           content="Nissan of Datgate | Car Dealership Website"
         />
       </Head>
-      <SiteContext.Provider value={siteData}>
-        <Hero />
-        <ModelSection />
-        <DealerIntro />
-        <AboutDealer />
-        <ReviewsSection />
-      </SiteContext.Provider>
+
+      <Hero />
+      <ModelSection />
+      <DealerIntro />
+      <AboutDealer />
+      <ReviewsSection />
     </>
   );
 };
