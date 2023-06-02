@@ -4,6 +4,7 @@ import { useIntersectionObserver } from 'hooks/useIntersectionObserver';
 import React from 'react';
 import { VehicleCard } from '@/design';
 import { VehicleModel } from 'libs/models/VehicleModels';
+import { useRouter } from 'next/router';
 
 export const VehiclesList = () => {
   const { data, fetchNextPage, hasNextPage }: any = useVehicles();

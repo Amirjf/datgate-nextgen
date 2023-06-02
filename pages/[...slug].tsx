@@ -6,9 +6,11 @@ import ShopLayout from 'layouts/shop';
 import { GetServerSideProps, GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import queryString from 'query-string';
 
 import { fetchInventory } from 'queries/fetchInventory';
 import React, { useContext } from 'react';
+import { useSsr } from 'usehooks-ts';
 
 export const convertArrayToObject = (array: any) => {
   return array.reduce((acc: any, item: any) => {
@@ -30,8 +32,27 @@ export const convertArrayToObject = (array: any) => {
 };
 
 const Inventory = ({ filterData }: any) => {
-  const { addFilter }: any = useContext(InventoryContext);
+  const { addFilter, updateState }: any = useContext(InventoryContext);
+  const { isBrowser } = useSsr();
+
+  const params = isBrowser ? window.location.search : '';
+
+  const encodedFilters = queryString.parse(params, {
+    arrayFormat: 'comma',
+    parseNumbers: true,
+    parseBooleans: true,
+    arrayFormatSeparator: ',',
+  });
+
+  for (const key in encodedFilters) {
+    if (!Array.isArray(encodedFilters[key])) {
+      //@ts-ignore
+      encodedFilters[key] = [encodedFilters[key]];
+    }
+  }
+
   React.useEffect(() => {
+    updateState(encodedFilters);
     filterData?.selected_filters.map((filter: any) => {
       addFilter({
         key: filter.name,

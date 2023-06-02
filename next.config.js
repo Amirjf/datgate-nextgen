@@ -16,6 +16,7 @@ const nextConfig = {
       'imageonthefly.autodatadirect.com',
       'nissan.datgate.com',
       'nissanofportland.com',
+      'images.unsplash.com',
     ],
   },
 };
