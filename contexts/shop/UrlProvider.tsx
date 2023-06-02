@@ -1,10 +1,11 @@
 import { createContext, FC, useEffect } from 'react';
 
-import qs from 'qs';
+import queryString from 'query-string';
 
 import { useSsr } from 'usehooks-ts';
 import { convertArrayToObject } from 'pages/[...slug]';
 import { useVehicles } from './VehiclesContext';
+import { useRouter } from 'next/router';
 
 export const filterOriginalFilterObj = (
   filters: any,
@@ -86,59 +87,60 @@ export const filterConditions = (conditions: string[]) => {
 
 export const UrlStructureProvider: FC<any> = ({ children }) => {
   const { data }: any = useVehicles();
+  const router = useRouter();
   const selectedFilters = data?.selectedFilters;
   const { isBrowser } = useSsr();
 
-  // useEffect(() => {
-  //   const refactorFiltersForParse = convertArrayToObject(selectedFilters);
+  useEffect(() => {
+    const refactorFiltersForParse = convertArrayToObject(selectedFilters);
 
-  //   const {
-  //     make: makes,
-  //     model: models,
-  //     trim: trims,
-  //     body: bodys,
-  //     condition,
-  //   } = refactorFiltersForParse;
+    const {
+      make: makes,
+      model: models,
+      trim: trims,
+      body: bodys,
+      condition,
+    } = refactorFiltersForParse;
 
-  //   const otherQueries = {
-  //     ...refactorFiltersForParse,
-  //     ...(condition && filterConditions(condition)),
-  //     //   ...(debouncedSearchValue && { search: debouncedSearchValue }),
-  //   };
+    const otherQueries = {
+      ...refactorFiltersForParse,
+      ...(condition && filterConditions(condition)),
+      //   ...(debouncedSearchValue && { search: debouncedSearchValue }),
+    };
 
-  //   const specialFiltersArray: any = [
-  //     ...(makes ? [makes[0]] : []),
-  //     ...(bodys ? [bodys[0]] : []),
-  //     ...((models && makes && makes.length === 1) || (models && !makes?.length)
-  //       ? [models[0]]
-  //       : []),
-  //     ...(trims && makes && makes.length === 1 ? [trims[0]] : []),
-  //   ];
+    const specialFiltersArray: any = [
+      ...(makes ? [makes[0]] : []),
+      ...(bodys ? [bodys[0]] : []),
+      ...((models && makes && makes.length === 1) || (models && !makes?.length)
+        ? [models[0]]
+        : []),
+      ...(trims && makes && makes.length === 1 ? [trims[0]] : []),
+    ];
 
-  //   const encodedSpecialFiltersArray = specialFiltersArray.length
-  //     ? `${specialFiltersArray.join('/')}/`
-  //     : '';
+    const encodedSpecialFiltersArray = specialFiltersArray.length
+      ? `${specialFiltersArray.join('/')}/`
+      : '';
 
-  //   filterOriginalFilterObj(otherQueries, makes, models);
+    filterOriginalFilterObj(otherQueries, makes, models);
 
-  //   const endcodedFilters = `${qs.stringify(otherQueries, {
-  //     arrayFormat: 'comma',
-  //     encodeValuesOnly: true,
-  //   })}`;
+    const endcodedFilters = `${queryString.stringify(otherQueries, {
+      arrayFormat: 'comma',
+    })}`;
 
-  //   const finalEncodedURL = `${handleConditionsUrl(
-  //     condition
-  //   )}${encodedSpecialFiltersArray}${
-  //     endcodedFilters ? `?${endcodedFilters}` : ''
-  //   }`
-  //     .replaceAll(' ', '_')
-  //     .replaceAll('%20', '_')
-  //     .toLowerCase();
+    const finalEncodedURL = `${handleConditionsUrl(
+      condition
+    )}${encodedSpecialFiltersArray}${
+      endcodedFilters ? `?${endcodedFilters}` : ''
+    }`
+      .replaceAll(' ', '_')
+      .replaceAll('%20', '_')
+      .toLowerCase();
 
-  //   if (isBrowser) {
-  //     window.history.replaceState({}, 'filters', `/` + finalEncodedURL);
-  //   }
-  // }, [selectedFilters]);
+    // if (isBrowser) {
+    // window.history.replaceState({}, 'filters', `/` + finalEncodedURL);
+    router.replace(finalEncodedURL, undefined, { shallow: true });
+    // }
+  }, [selectedFilters]);
 
   return (
     <UrlProviderContext.Provider value={{}}>
