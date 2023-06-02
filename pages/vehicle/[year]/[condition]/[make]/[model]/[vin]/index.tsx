@@ -34,8 +34,6 @@ const VehicleDetailsPage = ({ vehicleData }: any) => {
     cta,
   } = vehicleData;
 
-  console.log(cta, 'cta');
-
   const { year, make, model, condition: queryCondition } = query;
 
   const sliderBlock = 'col-span-2 rounded';
@@ -81,6 +79,7 @@ const VehicleDetailsPage = ({ vehicleData }: any) => {
                   <div className="flex flex-col gap-4">
                     {cta.map((button: any) => (
                       <Button
+                        key={button.cta_label}
                         className={`bg-[${button.btn_styles.bg}] uppercase`}
                       >
                         {button.cta_label}
