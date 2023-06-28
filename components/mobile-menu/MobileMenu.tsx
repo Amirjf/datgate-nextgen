@@ -1,14 +1,7 @@
 import { Popover, Transition } from '@headlessui/react';
 import { IconMenu2, IconX } from '@tabler/icons';
-import React, { Fragment, useEffect } from 'react';
-
-const MENU_ITEMS = [
-  { label: 'Home', url: '/' },
-  { label: 'Inventory', url: '/new-vehicles' },
-  { label: 'Services', url: '/services' },
-  { label: 'Services', url: '/services' },
-  { label: 'Services', url: '/services' },
-];
+import Image from 'next/image';
+import React, { Fragment } from 'react';
 
 const solutions = [
   {
@@ -75,12 +68,7 @@ const resources = [
   },
 ];
 
-const MobileMenu = ({ openMenu, setIsMenuOpen }: any) => {
-  useEffect(() => {
-    const body = document.querySelector('body')!;
-    body.style.overflow = openMenu ? 'hidden' : 'auto';
-  }, [openMenu]);
-
+const MobileMenu = ({ setIsMenuOpen }: any) => {
   return (
     <Transition
       as={Fragment}
@@ -99,7 +87,9 @@ const MobileMenu = ({ openMenu, setIsMenuOpen }: any) => {
           <div className="px-5 pt-5 pb-6">
             <div className="flex items-center justify-between">
               <div>
-                <img
+                <Image
+                  width={140}
+                  height={50}
                   className="h-8 w-auto"
                   src="/logo.png"
                   alt="Your Company"
@@ -181,4 +171,4 @@ const MobileMenu = ({ openMenu, setIsMenuOpen }: any) => {
   );
 };
 
-export default MobileMenu;
+export { MobileMenu };

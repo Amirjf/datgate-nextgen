@@ -1,15 +1,6 @@
 import { Popover } from '@headlessui/react';
-import {
-  IconClock,
-  IconCloudDataConnection,
-  IconCurrentLocation,
-  IconLocation,
-  IconLocationOff,
-  IconMenu2,
-  IconPhone,
-} from '@tabler/icons';
+import { IconClock, IconLocation, IconMenu2, IconPhone } from '@tabler/icons';
 import ContactInfo from 'components/contact-info/ContactInfo';
-import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 import React from 'react';
 
@@ -52,12 +43,12 @@ const TopHeader = ({ setOpenMenu }: Props) => {
             <IconMenu2 className="h-8 w-8" aria-hidden="true" />
           </Popover.Button>
         </div>
-        <div className="hidden lg:flex w-1/3 flex-wrap justify-start gap-x-10 gap-y-2 opacity-60 hover:opacity-100 transition-opacity">
+        <div className="hidden lg:flex w-1/2 justify-end gap-x-10 gap-y-2 opacity-60 hover:opacity-100 transition-opacity">
           <ContactInfo Icon={IconPhone} text={'9203829103'} />
           <ContactInfo Icon={IconClock} text={'Today: 9:00am - 8:00pm'} />
 
           <ContactInfo
-            Icon={IconLocationOff}
+            Icon={IconLocation}
             text={'25035 SW Parkway Ave, Wilsonville,OR'}
           />
         </div>
@@ -66,4 +57,4 @@ const TopHeader = ({ setOpenMenu }: Props) => {
   );
 };
 
-export default TopHeader;
+export { TopHeader };

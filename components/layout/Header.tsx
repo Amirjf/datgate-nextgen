@@ -1,47 +1,54 @@
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import clsx from 'clsx';
-import useScrollPosition from 'hooks/useScrollPosition';
-import MobileMenu from 'components/mobile-menu/MobileMenu';
 import { Popover } from '@headlessui/react';
-import { motion, AnimatePresence } from 'framer-motion';
-import Search from 'components/search/Search';
-import Nav from 'components/nav/Nav';
-import TopHeader from './TopHeader';
+import { AnimatePresence } from 'framer-motion';
 import { IconMenu2 } from '@tabler/icons';
-import Favorites from 'components/favorites/Favorites';
+import { Nav, Search, MobileMenu } from '@/components/ui';
+import { useScrollPosition } from '@/hooks';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
-const layoutAnimation = {
-  layout: { duration: 0.3, ease: 'linear' },
+type Props = {
+  bg?: string;
 };
 
-const Header = () => {
-  const scrollPostion = useScrollPosition(75);
+const Header: FC<Props> = ({ bg = 'bg-black' }) => {
+  const scrollPostion = useScrollPosition(74);
+  const { pathname } = useRouter();
 
   const [openMenu, setOpenMenu] = useState(false);
 
   return (
-    <Popover as={'header'} className={clsx('w-full bg-black')}>
-      <TopHeader setOpenMenu={setOpenMenu} />
+    <Popover
+      as={'header'}
+      className={clsx(
+        'w-full z-50 relative',
+        pathname !== '/' ? 'bg-black' : ''
+      )}
+    >
       <AnimatePresence>
         <div
           className={clsx(
-            'mx-auto w-full bg-black px-4 sm:px-6',
-            !scrollPostion && 'fixed top-0 w-full'
+            'mx-auto w-full px-4 sm:px-6 transition-colors duration-200',
+            !scrollPostion ? 'bg-black' : bg,
+            pathname === '/' ? 'fixed top-0' : ''
           )}
         >
           <div className="flex items-center justify-between py-3 md:justify-start md:space-x-10">
             <div className="flex justify-between w-full lg:w-auto items-center lg:justify-start gap-3">
-              <a href="#">
+              <Link href="/">
                 <span className="sr-only">LOGO</span>
                 <Image
-                  width={100}
+                  width={370}
                   height={100}
+                  loading="eager"
+                  priority
                   className="h-10 w-auto sm:h-14"
-                  src="https://mbseattle.datgate.com/content/uploads/2023/01/mb-seatlle-logo.jpg"
-                  alt=""
+                  src="/nissan-logo.jpg"
+                  alt="logo"
                 />
-              </a>
+              </Link>
               <div className="-my-2 -mr-2 lg:hidden">
                 <Popover.Button
                   onClick={() => setOpenMenu(true)}
@@ -57,7 +64,7 @@ const Header = () => {
 
             <div className="hidden items-center justify-end lg:flex lg:flex-1">
               <Search />
-              <Favorites />
+              {/* <Favorites /> */}
             </div>
           </div>
         </div>
@@ -68,4 +75,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export { Header };

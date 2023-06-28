@@ -1,6 +1,7 @@
-import Header from './Header';
+import { Header } from '@/components/ui';
+import Footer from './Footer';
 type Props = {
-  children: JSX.Element;
+  children: React.ReactNode;
 };
 
 const Layout = ({ children }: Props) => {
@@ -8,6 +9,7 @@ const Layout = ({ children }: Props) => {
     <>
       <Header />
       <main>{children}</main>
+      <Footer />
     </>
   );
 };

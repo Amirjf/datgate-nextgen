@@ -16,9 +16,13 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@/components/ui": ["components/index"]
+      "@/components/ui": ["components/index"],
+      "@/hooks": ["hooks/index"],
+      "@/design": ["libs/design/index"],
+      "@/models": ["libs/models/index"],
+      "@/data-layer": ["libs/data-layer/index"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "libs"],
   "exclude": ["node_modules"]
 }

@@ -16,3 +16,19 @@ a {
 * {
   box-sizing: border-box;
 }
+
+@media only screen and (min-width: 769px) {
+  .h-dynamic {
+    height: clamp(90vh, 1000px, 250vh);
+  }
+}
+
+.condition-new {
+  color: #43ca89;
+}
+.condition-used {
+  color: #347ef7;
+}
+.condition-certified {
+  color: #f41818;
+}
