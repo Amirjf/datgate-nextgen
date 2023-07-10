@@ -9,7 +9,7 @@ type Props = {
 
 export const VehicleCard: FC<Props> = ({ car }) => {
   const {
-    title_short,
+    title,
     photo,
     stock_number,
     mileage,
@@ -32,7 +32,7 @@ export const VehicleCard: FC<Props> = ({ car }) => {
             className="w-full"
             width={600}
             height={300}
-            alt={title_short}
+            alt={title}
             loading="eager"
             priority
             sizes="(max-width: 768px) 10vw,
@@ -48,7 +48,7 @@ export const VehicleCard: FC<Props> = ({ car }) => {
             <span className="pl-1 text-gray-500">{stock_number}</span>
           </div>
 
-          <h2 className="font-medium">{title_short}</h2>
+          <h2 className="font-medium">{title}</h2>
 
           <div className="flex justify-between items-center pt-4">
             <span className="text-gray-400 font-semibold text-sm">

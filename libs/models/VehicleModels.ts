@@ -43,8 +43,8 @@ export interface VehicleModel {
   photo: string;
   price: number;
   stock_number: string;
-  title_full: string;
-  title_short: string;
+  subtitle: string;
+  title: string;
   transmission: string;
   trim: string;
   vdp_url: string;

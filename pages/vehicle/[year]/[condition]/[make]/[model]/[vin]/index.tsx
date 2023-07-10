@@ -22,7 +22,7 @@ const VehicleDetailsPage = ({ vehicleData }: any) => {
 
   const {
     photos,
-    title_short,
+    title,
     stock_number,
     vin_number,
     formatted_price,
@@ -60,7 +60,7 @@ const VehicleDetailsPage = ({ vehicleData }: any) => {
             <div className={vdpInfoBlock}>
               <div className="p-4">
                 <div className="flex justify-between items-center border-b-2 pb-2">
-                  <h1 className="font-semibold text-lg">{title_short}</h1>
+                  <h1 className="font-semibold text-lg">{title}</h1>
                   <p className="font-bold text-lg">{formatted_price}</p>
                 </div>
 

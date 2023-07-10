@@ -10,7 +10,6 @@ import { useState } from 'react';
 import '../styles/globals.css';
 import { useScrollRestoration } from 'hooks/useScrollRestoration';
 import { SiteContext } from 'contexts/site/SiteContext';
-import NextNProgress from 'nextjs-progressbar';
 import { siteDataFetcher } from 'queries/fetchSiteData';
 import { fetchInventoryData } from '@/data-layer';
 
@@ -49,11 +48,6 @@ function App({
       >
         <QueryClientProvider client={queryClient}>
           <Hydrate state={pageProps.dehydratedState}>
-            <NextNProgress
-              options={{ showSpinner: false }}
-              color="#9d3232"
-              height={3}
-            />
             {Component.PageLayout ? (
               //@ts-ignore
               <Component.PageLayout>
